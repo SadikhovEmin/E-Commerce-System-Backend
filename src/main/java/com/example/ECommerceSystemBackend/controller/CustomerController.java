@@ -2,23 +2,31 @@ package com.example.ECommerceSystemBackend.controller;
 
 import com.example.ECommerceSystemBackend.model.Customer;
 import com.example.ECommerceSystemBackend.service.CustomerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 
+@RequestMapping("/customer")
 @RestController
-@RequestMapping("/customers")
-@CrossOrigin
 public class CustomerController {
 
-    private final CustomerService customerService;
+    @Autowired
+    CustomerService customerService;
 
-    public CustomerController(CustomerService customerService) {
-        this.customerService = customerService;
+    @GetMapping(path = "/{id}")
+    public Customer getCustomer(@PathVariable Integer id) {
+        return customerService.getCustomer(id);
     }
 
-    @PostMapping
-    public @ResponseBody Customer addCustomer(@RequestBody Customer customer) {
-        customerService.addCustomer(customer);
-        return customer;
+    @GetMapping
+    public List<Customer> getCustomer() {
+        return customerService.getAllCustomers();
     }
+
+    @PutMapping(path = "/{id}")
+    public void updateCustomer(@RequestBody Customer customer) {
+        customerService.updateCustomer(customer);
+    }
+
 }
