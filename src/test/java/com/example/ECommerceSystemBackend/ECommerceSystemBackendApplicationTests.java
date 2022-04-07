@@ -1,13 +1,12 @@
 package com.example.ECommerceSystemBackend;
 
-import com.example.ECommerceSystemBackend.model.Customer;
-import com.example.ECommerceSystemBackend.repository.CustomerRepository;
+import com.example.ECommerceSystemBackend.Model.Customer;
+import com.example.ECommerceSystemBackend.Repository.CustomerRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class ECommerceSystemBackendApplicationTests {
@@ -16,18 +15,18 @@ class ECommerceSystemBackendApplicationTests {
 
 	@Test
 	public void addCustomer() {
-		Customer customer = new Customer("Esad", "EsadSimitcioglu", "12345");
+		var customer = new Customer("Esad","Simit" ,"EsadSimitcioglu", "12345");
 		customerRepository.save(customer);
-
-		Customer savedCustomer = customerRepository.getCustomerByID(12);
-
-		System.out.println(customer);
-		System.out.println("********");
-		System.out.println(savedCustomer);
-
-		assertEquals(customer.getId(),savedCustomer.getId());
-
-
+		assertTrue(customer.getId() > 0);
 	}
 
+	@Test
+	public void pullCustomers() {
+		var customerList = customerRepository.findAll();
+
+		for (Customer customer : customerList) {
+			System.out.println(customer);
+		}
+		assertFalse(customerList.isEmpty());
+	}
 }

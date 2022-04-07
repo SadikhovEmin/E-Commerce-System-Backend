@@ -1,6 +1,6 @@
-package com.example.ECommerceSystemBackend.model;
+package com.example.ECommerceSystemBackend.Model;
 
-import com.example.ECommerceSystemBackend.model.enums.Status;
+import com.example.ECommerceSystemBackend.Model.enums.Status;
 
 import java.util.Date;
 

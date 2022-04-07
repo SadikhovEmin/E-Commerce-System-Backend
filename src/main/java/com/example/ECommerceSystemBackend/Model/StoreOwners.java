@@ -1,9 +1,4 @@
-package com.example.ECommerceSystemBackend.model;
-
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+package com.example.ECommerceSystemBackend.Model;
 
 public class StoreOwners {
     // Request to create a store

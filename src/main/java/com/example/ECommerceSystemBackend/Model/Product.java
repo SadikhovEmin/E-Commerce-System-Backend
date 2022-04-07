@@ -1,4 +1,4 @@
-package com.example.ECommerceSystemBackend.model;
+package com.example.ECommerceSystemBackend.Model;
 
 public class Product {
     private String name;
