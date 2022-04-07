@@ -1,4 +1,4 @@
-package com.example.ECommerceSystemBackend.Model;
+package com.example.ECommerceSystemBackend.model;
 
 public class StoreOwners {
     // Request to create a store

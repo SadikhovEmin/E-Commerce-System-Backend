@@ -1,4 +1,4 @@
-package com.example.ECommerceSystemBackend.Model;
+package com.example.ECommerceSystemBackend.model;
 
 import java.util.ArrayList;
 import java.util.List;
