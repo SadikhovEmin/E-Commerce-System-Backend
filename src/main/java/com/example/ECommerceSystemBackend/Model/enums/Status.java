@@ -1,4 +1,4 @@
-package com.example.ECommerceSystemBackend.model.enums;
+package com.example.ECommerceSystemBackend.Model.enums;
 
 public enum Status {
     PENDING,
