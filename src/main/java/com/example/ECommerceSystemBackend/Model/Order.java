@@ -1,4 +1,4 @@
-package com.example.ECommerceSystemBackend.model;
+package com.example.ECommerceSystemBackend.Model;
 
 import com.example.ECommerceSystemBackend.Model.enums.Status;
 

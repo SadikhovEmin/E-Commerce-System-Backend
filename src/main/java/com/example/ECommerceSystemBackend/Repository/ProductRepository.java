@@ -1,7 +1,7 @@
-package com.example.ECommerceSystemBackend.repository;
+package com.example.ECommerceSystemBackend.Repository;
 
-import com.example.ECommerceSystemBackend.model.Customer;
-import com.example.ECommerceSystemBackend.model.Product;
+
+import com.example.ECommerceSystemBackend.Model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

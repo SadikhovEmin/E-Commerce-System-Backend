@@ -1,7 +1,7 @@
-package com.example.ECommerceSystemBackend.service;
+package com.example.ECommerceSystemBackend.Service;
 
+import com.example.ECommerceSystemBackend.Model.Customer;
 import com.example.ECommerceSystemBackend.Repository.CustomerRepository;
-import com.example.ECommerceSystemBackend.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +16,8 @@ public class CustomerService {
         this.repository = customerRepository;
     }
 
-    public void addCustomer(Customer customer) {
-        repository.save(customer);
+    public Customer addCustomer(Customer customer) {
+        return repository.save(customer);
     }
 
     public Customer getCustomer(Integer id) {return repository.getCustomerByID(id);}

@@ -1,4 +1,4 @@
-package com.example.ECommerceSystemBackend.model;
+package com.example.ECommerceSystemBackend.Model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
