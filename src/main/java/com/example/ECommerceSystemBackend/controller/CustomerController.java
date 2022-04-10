@@ -30,12 +30,4 @@ public class CustomerController {
         return customerService.addCustomer(customer);
     }
 
-
-    /*
-    f(n) = g(n) + h(n)
-
-
-
-     */
-
 }
