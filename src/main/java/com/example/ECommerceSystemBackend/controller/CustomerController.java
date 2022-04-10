@@ -5,8 +5,6 @@ import com.example.ECommerceSystemBackend.Service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RequestMapping("/customer")
 @RestController
 @CrossOrigin
@@ -15,14 +13,11 @@ public class CustomerController {
     @Autowired
     CustomerService customerService;
 
-    @GetMapping(path = "/{id}")
-    public Customer getCustomer(@PathVariable Integer id) {
-        return customerService.getCustomer(id);
-    }
-
-    @GetMapping
-    public List<Customer> getCustomer() {
-        return customerService.getAllCustomers();
+    @GetMapping(path = "/{email}")
+    public String loginCustomer(@PathVariable String email) {
+        String pass = customerService.loginCustomer(email);
+        System.out.println(email);
+        return pass;
     }
 
     @PutMapping(path = "/{id}")
@@ -34,5 +29,13 @@ public class CustomerController {
     public Customer addCustomer(@RequestBody Customer customer) {
         return customerService.addCustomer(customer);
     }
+
+
+    /*
+    f(n) = g(n) + h(n)
+
+
+
+     */
 
 }

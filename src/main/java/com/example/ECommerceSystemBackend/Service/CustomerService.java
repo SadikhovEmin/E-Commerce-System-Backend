@@ -22,6 +22,12 @@ public class CustomerService {
 
     public Customer getCustomer(Integer id) {return repository.getCustomerByID(id);}
 
+    public String loginCustomer(String email) {
+        String customerPasswordByEmail = repository.getCustomerPasswordByEmail(email);
+        System.out.println("customerPasswordByEmail = " + customerPasswordByEmail);
+        return customerPasswordByEmail;
+    }
+
     public List<Customer> getAllCustomers() {return repository.findAll();}
 
     public void updateCustomer(Customer customer) { repository.updateCustomerInfo(customer.getId(), customer.getName(), customer.getEmail(), customer.getPassword());}
