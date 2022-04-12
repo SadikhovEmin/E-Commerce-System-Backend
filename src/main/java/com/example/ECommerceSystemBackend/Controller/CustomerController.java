@@ -31,12 +31,12 @@ public class CustomerController {
         return customerService.getCustomerPassword(id);
     }
 
-    @PutMapping(path = "/{id}/info")
+    @PutMapping(path = "/info")
     public void updateCustomerInfo(@RequestBody CustomerInfoDTO customer) {
         customerService.updateCustomerInfo(customer);
     }
 
-    @PutMapping(path = "/{id}/password")
+    @PutMapping(path = "/password")
     public void updateCustomerPassword(@RequestBody PasswordDTO passwordDTO) {
         customerService.updateCustomerPassword(passwordDTO);
     }
