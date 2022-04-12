@@ -15,9 +15,17 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
     Customer getCustomerByID (Integer id);
 
     @Modifying
-    @Query("update Customer set name = ?2 , email = ?3 , password = ?4  where id = ?1 ")
+    @Query("update Customer set name = ?2 , surname = ?3, email = ?4  where id = ?1 ")
     @Transactional
-    Customer updateCustomerInfo(Integer id, String name, String email, String password);
+    Customer updateCustomerInfo(Integer id, String name, String surname, String email);
+
+    @Modifying
+    @Query("update Customer set password = ?2 where id = ?1 ")
+    @Transactional
+    Customer updateCustomerPassword(Integer id, String password);
+
+    @Query("select c.password from Customer c where c.id = ?1")
+    String getCustomerPassword(Integer id);
 
     @Query("select c.password from Customer c where c.email = ?1")
     String getCustomerPasswordByEmail(String email);
