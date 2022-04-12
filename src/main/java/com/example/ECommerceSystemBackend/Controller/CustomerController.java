@@ -1,6 +1,8 @@
 package com.example.ECommerceSystemBackend.Controller;
 
 import com.example.ECommerceSystemBackend.Model.Customer;
+import com.example.ECommerceSystemBackend.Model.DTO.CustomerInfoDTO;
+import com.example.ECommerceSystemBackend.Model.DTO.PasswordDTO;
 import com.example.ECommerceSystemBackend.Service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,9 +26,19 @@ public class CustomerController {
         return customerService.getAllCustomers();
     }
 
-    @PutMapping(path = "/{id}")
-    public void updateCustomer(@RequestBody Customer customer) {
-        customerService.updateCustomer(customer);
+    @GetMapping("/{id}/password")
+    public String getCustomerOldPassword(@PathVariable Integer id) {
+        return customerService.getCustomerPassword(id);
+    }
+
+    @PutMapping(path = "/{id}/info")
+    public void updateCustomerInfo(@RequestBody CustomerInfoDTO customer) {
+        customerService.updateCustomerInfo(customer);
+    }
+
+    @PutMapping(path = "/{id}/password")
+    public void updateCustomerPassword(@RequestBody PasswordDTO passwordDTO) {
+        customerService.updateCustomerPassword(passwordDTO);
     }
 
 }
