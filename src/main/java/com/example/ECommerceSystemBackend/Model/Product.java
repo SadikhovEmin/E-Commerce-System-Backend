@@ -1,5 +1,7 @@
 package com.example.ECommerceSystemBackend.Model;
 
+import com.example.ECommerceSystemBackend.Model.enums.ProductType;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,7 +13,8 @@ public class Product {
     private String name;
     @Column(name = "PRICE")
     private Double price;
-
+    @Column(name = "TYPE")
+    private ProductType type;
 
     public Product() {
     }
@@ -43,5 +46,13 @@ public class Product {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public ProductType getType() {
+        return type;
+    }
+
+    public void setType(ProductType type) {
+        this.type = type;
     }
 }
