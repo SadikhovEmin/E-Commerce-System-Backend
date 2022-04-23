@@ -1,11 +1,11 @@
 package com.example.ECommerceSystemBackend.Model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Customer {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -17,6 +17,8 @@ public class Customer {
     private String email;
     @Column(name = "PASSWORD")
     private String password;
+    @Column(name = "SECRET")
+    private String secret;
     @Transient
     private List<Product> basket;
 
@@ -76,6 +78,15 @@ public class Customer {
     public void setBasket(List<Product> basket) {
         this.basket = basket;
     }
+
+    public String getSecret() {
+        return secret;
+    }
+
+    public void setSecret(String secret) {
+        this.secret = secret;
+    }
+
     public void addProduct(Product product) {}
     public void removeProduct(Product product) {}
     public void checkout() {}
