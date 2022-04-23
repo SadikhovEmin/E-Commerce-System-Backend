@@ -21,9 +21,29 @@ public class ProductController {
         return productRepository.findAll();
     }
 
-    @GetMapping("/{type}")
-    public List<Product> getProductWithTypes(@PathVariable ProductType type) {
+    @GetMapping("/searchType/{type}")
+    public List<Integer> getProductWithTypes(@PathVariable ProductType type) {
         return productRepository.getProductWithType(type);
+    }
+
+    @GetMapping("/searchPrice/{price}")
+    public List<Integer> getProductsWithPrice(@PathVariable Double price) {
+        return productRepository.getProductWithPrice(price);
+    }
+
+    @GetMapping("/searchLessPrice/{price}")
+    public List<Integer> getProductLessThanPrice(@PathVariable Double price) {
+        return productRepository.getProductLessThanPrice(price);
+    }
+
+    @GetMapping("/searchGreaterPrice/{price}")
+    public List<Integer> getProductGreaterThanPrice(@PathVariable Double price) {
+        return productRepository.getProductGreaterThanPrice(price);
+    }
+
+    @GetMapping("/searchName/{name}")
+    public List<Integer> getProductWithName(@PathVariable String name) {
+        return productRepository.getProductWithName(name);
     }
 
 }
