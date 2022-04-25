@@ -2,12 +2,13 @@ package com.example.ECommerceSystemBackend.Controller;
 
 import com.example.ECommerceSystemBackend.Model.Customer;
 import com.example.ECommerceSystemBackend.Model.Email;
-import com.example.ECommerceSystemBackend.Model.SystemEmailAccount;
 import com.example.ECommerceSystemBackend.Model.enums.Hosts;
 import com.example.ECommerceSystemBackend.Model.enums.Ports;
 import com.example.ECommerceSystemBackend.Model.DTO.CustomerInfoDTO;
 import com.example.ECommerceSystemBackend.Model.DTO.PasswordDTO;
 import com.example.ECommerceSystemBackend.Service.CustomerService;
+import com.example.ECommerceSystemBackend.Service.SystemEmailAccountService;
+import com.example.ECommerceSystemBackend.Service.AuthenticationService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +24,12 @@ public class CustomerController {
     
     @Autowired
     CustomerService customerService;
+
+    @Autowired
+    AuthenticationService authenticationService;
+
+    @Autowired
+    SystemEmailAccountService systemEmailAccountService;
 
     @GetMapping(path = "/{id}")
     public Customer getCustomer(@PathVariable Integer id) {
@@ -50,28 +57,55 @@ public class CustomerController {
     }
 
     @PostMapping
-    public Customer addCustomer(@RequestBody Map<String,String> customerMap) {
+    public String addCustomer(@RequestBody Map<String,String> customerMap) {
         Customer customer = new Customer();
         customer.setName(customerMap.get("name"));
         customer.setSurname(customerMap.get("surname"));
         customer.setEmail(customerMap.get("email"));
         customer.setPassword(customerMap.get("password"));
+        customer.setSecret(authenticationService.generateSecret());
+        customer.setMfa(Boolean.parseBoolean(customerMap.get("isMfa")));
+
+        var systemEmailAcc = systemEmailAccountService.getSystemEmailAccount("testforhw123@gmail.com");
+	    var systemEmail = new Email(systemEmailAcc,Hosts.GMAIL_SMTP,Ports.GMAIL_PORT_SSL);
+    
         String verificationCode = codes.get(customer.getEmail());
         String enteredCode = customerMap.get("code");
+
         if(enteredCode.equals(verificationCode)){
+            customerService.addCustomer(customer);
             codes.remove(customer.getEmail()); 
-            return customerService.addCustomer(customer);
+            if(customer.isMfa()){
+                var qrCode = authenticationService.getUriForImage(customer.getSecret(),customer.getEmail());
+                systemEmail.SendAuthenticationCode(customer.getEmail(),qrCode);
+            }
+            return "loginPage.html";
         }
-        return null;
+        return "signUp.html";
     }
 
     @PostMapping("/verification")
     public void setVerificiation(@RequestBody Map<String, String> mailMap){
         String customerEmail = mailMap.get("email");
-        var systemEmailAcc = new SystemEmailAccount("testforhw123@gmail.com","testforhw123123");
+        var systemEmailAcc = systemEmailAccountService.getSystemEmailAccount("testforhw123@gmail.com");
 	    var systemEmail = new Email(systemEmailAcc,Hosts.GMAIL_SMTP,Ports.GMAIL_PORT_SSL);
-        String code = systemEmail.SendAccountVerificationMessage(customerEmail);
+        
+        String code = systemEmail.SendAccountVerificationCode(customerEmail);
         codes.put(customerEmail, code);
     }
-
+    @PostMapping("/login")
+    public String login(@RequestBody Map<String, String> customerMap){
+        String customerEmail = customerMap.get("email");
+        Customer c = customerService.getCustomer(customerEmail);
+        if(c.getPassword().equals(customerMap.get("password"))){
+            if(c.isMfa()){
+                if(authenticationService.verifyCode(customerMap.get("code"), c.getSecret())){
+                    return "customerHomepage.html";
+                }
+                return "loginPage.html";
+            }
+            return "customerHomepage.html";
+        }
+        return "loginPage.html";
+    }
 }

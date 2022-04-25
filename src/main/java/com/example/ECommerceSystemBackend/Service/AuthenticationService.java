@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import static dev.samstevens.totp.util.Utils.getDataUriForImage;
 
 @Service
-public class TotpManager {
+public class AuthenticationService {
 
     public String generateSecret() {
         SecretGenerator generator = new DefaultSecretGenerator();
@@ -23,7 +23,7 @@ public class TotpManager {
         QrData data = new QrData.Builder()
                 .label("Two-factor-auth-test")
                 .secret(secret)
-                .issuer("exampleTwoFactor")
+                .issuer("E-Commerce")
                 .algorithm(HashingAlgorithm.SHA1)
                 .digits(6)
                 .period(30)
@@ -39,7 +39,29 @@ public class TotpManager {
         }
 
         String mimeType = generator.getImageMimeType();
+        return getDataUriForImage(imageData, mimeType);
+    }
 
+    public String getUriForImage(String secret,String email) {
+        QrData data = new QrData.Builder()
+                .label(email)
+                .secret(secret)
+                .issuer("E-Commerce")
+                .algorithm(HashingAlgorithm.SHA1)
+                .digits(6)
+                .period(30)
+                .build();
+
+        QrGenerator generator = new ZxingPngQrGenerator();
+        byte[] imageData = new byte[0];
+
+        try {
+            imageData = generator.generate(data);
+        } catch (QrGenerationException e) {
+           System.out.println("unable to generate QrCode");
+        }
+
+        String mimeType = generator.getImageMimeType();
         return getDataUriForImage(imageData, mimeType);
     }
 

@@ -12,9 +12,7 @@ public class Product {
     @Column(name = "PRICE")
     private Double price;
 
-
-    public Product() {
-    }
+    public Product() {}
 
     public Product(String name, Double price) {
         this.name = name;

@@ -6,7 +6,6 @@ import java.util.List;
 public class Store {
     private List<Product> products;
 
-
     public Store() {
         this.products = new ArrayList<>();
     }
