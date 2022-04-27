@@ -36,4 +36,5 @@ public class CustomerService {
 
     public String getCustomerPassword(Integer id){return repository.getCustomerPassword(id);}
 
+    public Integer getCustomerID(String email) {return repository.getCustomerID(email);}
 }

@@ -10,6 +10,9 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @Lob
+    private byte[] image;
+
     @Column(name = "NAME")
     private String name;
 
@@ -25,11 +28,25 @@ public class Product {
     public Product() {
     }
 
+    public Product(String name, Double price, ProductType type) {
+        this.name = name;
+        this.price = price;
+        this.type = type;
+    }
+
     public Product(String name, Double price, ProductType type, String description) {
         this.name = name;
         this.price = price;
         this.type = type;
         this.description = description;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
     public Integer getId() {
