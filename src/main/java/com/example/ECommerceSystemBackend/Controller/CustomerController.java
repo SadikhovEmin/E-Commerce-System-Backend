@@ -18,6 +18,7 @@ import java.util.Map;
 
 @RequestMapping("/customer")
 @RestController
+@CrossOrigin
 public class CustomerController {
     private Map<String, String> codes = new HashMap<String, String>();
     
@@ -49,6 +50,11 @@ public class CustomerController {
         customerService.updateCustomerPassword(passwordDTO);
     }
 
+    @GetMapping(path = "/email/{email}")
+    public String getCustomerPasswordByEmail(@PathVariable String email) {
+        return customerService.loginCustomer(email);
+    }
+
     @PostMapping
     public Customer addCustomer(@RequestBody Map<String,String> customerMap) {
         Customer customer = new Customer();
@@ -64,6 +70,8 @@ public class CustomerController {
         }
         return null;
     }
+
+
 
     @PostMapping("/verification")
     public void setVerificiation(@RequestBody Map<String, String> mailMap){
