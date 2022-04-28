@@ -22,13 +22,11 @@ public class CustomerService {
         return repository.save(customer);
     }
 
-    public Customer getCustomer(Integer id) {return repository.getCustomerByID(id);}
+    public Customer getCustomerById(Integer id) {return repository.getCustomerByID(id);}
 
-    public String loginCustomer(String email) {
-        String customerPasswordByEmail = repository.getCustomerPasswordByEmail(email);
-        System.out.println("customerPasswordByEmail = " + customerPasswordByEmail);
-        return customerPasswordByEmail;
-    }
+    public Customer getCustomerByEmail(String email) {return repository.getCustomerByEmail(email);}
+
+    public String loginCustomer(String email) {return repository.getCustomerPasswordByEmail(email);}
 
     public List<Customer> getAllCustomers() {return repository.findAll();}
 
@@ -38,4 +36,5 @@ public class CustomerService {
 
     public String getCustomerPassword(Integer id){return repository.getCustomerPassword(id);}
 
+    public Integer getCustomerID(String email) {return repository.getCustomerID(email);}
 }

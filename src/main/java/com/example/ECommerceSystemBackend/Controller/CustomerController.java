@@ -18,25 +18,46 @@ import java.util.Map;
 
 @RequestMapping("/customer")
 @RestController
+@CrossOrigin
 public class CustomerController {
     private Map<String, String> codes = new HashMap<String, String>();
     
     @Autowired
     CustomerService customerService;
 
-    @GetMapping(path = "/{id}")
+    /*@GetMapping(path = "/{id}")
     public Customer getCustomer(@PathVariable Integer id) {
-        return customerService.getCustomer(id);
+        return customerService.getCustomerById(id);
+    }
+
+     */
+
+    @GetMapping(path = "/profile/{email}")
+    public Integer getCustomerID(@PathVariable String email) {
+        return customerService.getCustomerID(email);
     }
 
     @GetMapping
-    public List<Customer> getCustomer() {
+    public List<Customer> getCustomers() {
         return customerService.getAllCustomers();
     }
 
+    /*
+    @GetMapping("/{email}")
+    public String getCustomerPassword(@PathVariable String email) {
+        return customerService.loginCustomer(email);
+    }
+     */
+
+    @GetMapping("/{email}")
+    public Customer getCustomer(@PathVariable String email) {
+        return customerService.getCustomerByEmail(email);
+    }
+
     @GetMapping("/{id}/password")
-    public String getCustomerOldPassword(@PathVariable Integer id) {
-        return customerService.getCustomerPassword(id);
+    public String getCustomerOldPassword(@PathVariable String id) {
+        System.out.println(id);
+        return customerService.getCustomerPassword(Integer.parseInt(id));
     }
 
     @PutMapping(path = "/info")
