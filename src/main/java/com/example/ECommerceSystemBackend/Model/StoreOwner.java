@@ -16,6 +16,9 @@ public class StoreOwner {
     @Column(name = "PASSWORD")
     private String password;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Store store;
+
     public StoreOwner(String name, String surname, String email, String password) {
         this.name = name;
         this.surname = surname;
@@ -25,6 +28,14 @@ public class StoreOwner {
 
     public StoreOwner() {
 
+    }
+
+    public Store getStore() {
+        return store;
+    }
+
+    public void setStore(Store store) {
+        this.store = store;
     }
 
     public Integer getId() {

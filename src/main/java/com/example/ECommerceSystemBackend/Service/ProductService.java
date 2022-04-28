@@ -22,6 +22,14 @@ public class ProductService {
         repository.save(product);
     }
 
+    public List<Product> getProducts() {
+        return repository.findAll();
+    }
+
+    public Product getProductByID(Integer id) {
+        return repository.getProductByID(id);
+    }
+
     public List<Integer> getProductWithType(ProductType productType){return repository.getProductWithType(productType);}
 
     public List<Integer> getProductWithPrice(Double price){return repository.getProductWithPrice(price);}
