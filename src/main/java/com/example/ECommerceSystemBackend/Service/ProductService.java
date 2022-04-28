@@ -18,6 +18,18 @@ public class ProductService {
         this.repository = productRepository;
     }
 
+    public List<Product> findAll() {
+        return repository.findAll();
+    }
+
+    public List<Product> getAscending() {
+        return repository.getProductInAscendingOrder();
+    }
+
+    public List<Product> getDescending() {
+        return repository.getProductInDescendingOrder();
+    }
+
     public void addProduct(Product product) {
         repository.save(product);
     }
