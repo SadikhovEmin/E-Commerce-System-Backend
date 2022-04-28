@@ -1,5 +1,7 @@
 package com.example.ECommerceSystemBackend.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +14,14 @@ public class Store {
     @Column(name = "Name")
     public String name;
 
+
     @OneToMany(
             cascade = CascadeType.ALL,
             mappedBy = "store"
     )
     public List<Product> products = new ArrayList<>();
 
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     private StoreOwner storeOwner;
 

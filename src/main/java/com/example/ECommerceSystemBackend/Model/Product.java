@@ -19,6 +19,7 @@ public class Product {
     @Column(name = "DESCRIPTION")
     private String description;
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Shop_ID", referencedColumnName = "ID")
     public Store store;
