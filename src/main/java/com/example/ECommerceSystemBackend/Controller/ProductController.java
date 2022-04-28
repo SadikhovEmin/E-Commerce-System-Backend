@@ -46,4 +46,14 @@ public class ProductController {
         return productService.getProductWithName(name);
     }
 
+    @GetMapping("/ascending")
+    public List<Product> getAscending() {
+        return productService.getAscending();
+    }
+
+    @GetMapping("/descending")
+    public List<Product> getDescending() {
+        return productService.getDescending();
+    }
+
 }

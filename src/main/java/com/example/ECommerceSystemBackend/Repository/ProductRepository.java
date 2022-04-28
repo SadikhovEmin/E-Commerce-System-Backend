@@ -31,6 +31,11 @@ public interface ProductRepository extends JpaRepository<Product, Integer>  {
     @Query("select p.id from Product p where p.name = ?1")
     List<Integer> getProductWithName (String name);
 
+    @Query("select p from Product p order by p.price asc")
+    List<Product> getProductInAscendingOrder();
+
+    @Query("select p from Product p order by p.price desc")
+    List<Product> getProductInDescendingOrder();
 
 
 }
