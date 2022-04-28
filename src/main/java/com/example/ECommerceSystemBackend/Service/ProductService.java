@@ -18,6 +18,10 @@ public class ProductService {
         this.repository = productRepository;
     }
 
+    public List<Product> findAll() {
+        return repository.findAll();
+    }
+
     public void addProduct(Product product) {
         repository.save(product);
     }
