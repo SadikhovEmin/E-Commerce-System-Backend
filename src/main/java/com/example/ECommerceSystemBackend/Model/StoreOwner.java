@@ -1,6 +1,10 @@
 package com.example.ECommerceSystemBackend.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class StoreOwner {
@@ -21,6 +25,8 @@ public class StoreOwner {
     private String secret;
 
     public StoreOwner() {}
+
+
 
     public StoreOwner(String name, String surname, String email, String password) {
         this.name = name;

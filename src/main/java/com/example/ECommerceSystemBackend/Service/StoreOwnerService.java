@@ -1,5 +1,9 @@
 package com.example.ECommerceSystemBackend.Service;
 
+import com.example.ECommerceSystemBackend.Model.Customer;
+import com.example.ECommerceSystemBackend.Model.DTO.PasswordDTO;
+import com.example.ECommerceSystemBackend.Model.DTO.StoreOwnerInfoDTO;
+
 import com.example.ECommerceSystemBackend.Model.StoreOwner;
 import com.example.ECommerceSystemBackend.Repository.StoreOwnerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,4 +27,19 @@ public class StoreOwnerService {
 
     public void updateStoreOwnerMfa(String email, boolean mfa) {storeOwnerRepository.updateStoreOwnerMfaByEmail(email,mfa);}
 
+    public StoreOwner getStoreOwnerByEmail(String email) {
+        return storeOwnerRepository.getStoreOwnerByEmail(email);
+    }
+
+    public String getStoreOwnerOldPassword(int id) {
+        return storeOwnerRepository.getStoreOwnerOldPasword(id);
+    }
+
+    public void updateStoreOwnerPassword(PasswordDTO passwordDTO) {
+        storeOwnerRepository.updateStoreOwnerPassword(passwordDTO.getId(),passwordDTO.getPassword());
+    }
+
+    public void updateStoreOwnerInfo(StoreOwnerInfoDTO storeOwner) {
+        storeOwnerRepository.updateStoreOwnerInfo(storeOwner.getId(),storeOwner.getEmail());
+    }
 }
