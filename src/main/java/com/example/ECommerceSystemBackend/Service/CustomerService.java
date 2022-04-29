@@ -24,6 +24,8 @@ public class CustomerService {
 
     public Customer getCustomerById(Integer id) {return repository.getCustomerByID(id);}
 
+    public Customer getCustomer(String email) { return repository.getCustomerByEmail(email);}
+
     public Customer getCustomerByEmail(String email) {return repository.getCustomerByEmail(email);}
 
     public String loginCustomer(String email) {return repository.getCustomerPasswordByEmail(email);}
@@ -36,5 +38,9 @@ public class CustomerService {
 
     public String getCustomerPassword(Integer id){return repository.getCustomerPassword(id);}
 
+    public void updateCustomerMfa(Customer customer, boolean mfa) {repository.updateCustomerMfaById(customer.getId(),mfa);}
+
+    public void updateCustomerMfa(String email, boolean mfa) {repository.updateCustomerMfaByEmail(email,mfa);}
+  
     public Integer getCustomerID(String email) {return repository.getCustomerID(email);}
 }

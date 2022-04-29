@@ -5,7 +5,6 @@ import java.util.List;
 
 @Entity
 public class Customer {
-    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -17,12 +16,14 @@ public class Customer {
     private String email;
     @Column(name = "PASSWORD")
     private String password;
+    @Column(name = "MFA")
+    private boolean mfa; 
     @Column(name = "SECRET")
     private String secret;
     @Transient
     private List<Product> basket;
 
-    public Customer(){}
+    public Customer() {}
 
     public Customer(String name, String surname, String email, String password) {
         this.name = name;
@@ -85,6 +86,14 @@ public class Customer {
 
     public void setSecret(String secret) {
         this.secret = secret;
+    }
+    
+    public boolean isMfa() {
+        return mfa;
+    }
+
+    public void setMfa(boolean mfa) {
+        this.mfa = mfa;
     }
 
     public void addProduct(Product product) {}
