@@ -23,15 +23,13 @@ import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/storeOwner")
 @RestController
+@CrossOrigin
 public class StoreOwnerController {
     private Map<String, String> codes = new HashMap<String, String>();
 
     @Autowired
     StoreOwnerService storeOwnerService;
 
-    @Autowired
-    StoreOwnerService storeOwnerService;
-  
     @Autowired
     AuthenticationService authenticationService;
   

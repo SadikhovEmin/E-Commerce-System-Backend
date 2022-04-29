@@ -32,12 +32,6 @@ public class CustomerController {
     @Autowired
     SystemEmailAccountService systemEmailAccountService;
 
-    @GetMapping(path = "/{id}")
-    public Customer getCustomer(@PathVariable Integer id) {
-        return customerService.getCustomerById(id);
-    }
-
-     */
 
     @GetMapping(path = "/profile/{email}")
     public Integer getCustomerID(@PathVariable String email) {

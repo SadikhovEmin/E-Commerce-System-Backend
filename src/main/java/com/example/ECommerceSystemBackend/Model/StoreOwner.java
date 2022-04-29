@@ -20,9 +20,9 @@ public class StoreOwner {
     @Column(name = "PASSWORD")
     private String password;
     @Column(name = "MFA")
-    private boolean mfa;
+    private boolean mfa = false;
     @Column(name = "SECRET")
-    private String secret;
+    private String secret = "";
 
     public StoreOwner() {}
 

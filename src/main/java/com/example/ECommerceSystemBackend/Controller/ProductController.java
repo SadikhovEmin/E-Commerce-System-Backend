@@ -66,8 +66,8 @@ public class ProductController {
     }
 
     @PostMapping
-    public List<Integer> getProductWithName(@PathVariable String name) {
-        return productService.getProductWithName(name);
+    public void addProduct(@RequestBody Product product) {
+        productService.addProduct(product);
     }
 
     @GetMapping("/ascending")
