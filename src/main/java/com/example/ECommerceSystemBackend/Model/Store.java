@@ -15,28 +15,21 @@ public class Store {
     public String name;
 
 
+    @OneToOne(
+            cascade = CascadeType.ALL
+    )
+    public StoreOwner storeOwner = new StoreOwner();
+
+    @JsonIgnore
     @OneToMany(
             cascade = CascadeType.ALL,
             mappedBy = "store"
     )
     public List<Product> products = new ArrayList<>();
 
-    @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL)
-    private StoreOwner storeOwner;
-
     public Store() {
     }
 
-
-
-    public StoreOwner getStoreOwner() {
-        return storeOwner;
-    }
-
-    public void setStoreOwner(StoreOwner storeOwner) {
-        this.storeOwner = storeOwner;
-    }
 
     public Store(String name) {
         this.name = name;

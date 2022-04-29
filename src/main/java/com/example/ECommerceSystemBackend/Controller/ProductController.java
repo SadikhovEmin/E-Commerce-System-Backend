@@ -1,5 +1,6 @@
 package com.example.ECommerceSystemBackend.Controller;
 
+import com.example.ECommerceSystemBackend.Model.DTO.ProductStockDTO;
 import com.example.ECommerceSystemBackend.Model.Product;
 import com.example.ECommerceSystemBackend.Model.enums.ProductType;
 import com.example.ECommerceSystemBackend.Repository.ProductRepository;
@@ -27,6 +28,11 @@ public class ProductController {
         return productService.getProductByID(id);
     }
 
+    @GetMapping("/store/{id}")
+    public List<Product> getProductsWithStoreID(@PathVariable String id) {
+        return productService.getProductByStoreID(Integer.parseInt(id));
+    }
+
     @GetMapping("/searchType/{type}")
     public List<Integer> getProductWithTypes(@PathVariable ProductType type) {
         return productService.getProductWithType(type);
@@ -48,8 +54,20 @@ public class ProductController {
     }
 
     @GetMapping("/searchName/{name}")
-    public List<Integer> getProductWithName(@PathVariable String name) {
+    public List<Product> getProductWithName(@PathVariable String name) {
         return productService.getProductWithName(name);
+    }
+
+    @PutMapping("/stock")
+    public void updateProductQuantity(@RequestBody ProductStockDTO productStockDTO) {
+        productService.updateProductQuantity(productStockDTO.getId(),productStockDTO.getQuantity());
+        System.out.println(productStockDTO.getId());
+        System.out.println(productStockDTO.getQuantity());
+    }
+
+    @PostMapping
+    public Product getProductWithName(@RequestBody Product product) {
+        return productService.addProduct(product);
     }
 
 }

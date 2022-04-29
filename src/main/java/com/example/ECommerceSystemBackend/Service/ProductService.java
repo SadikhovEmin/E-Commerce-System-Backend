@@ -18,12 +18,16 @@ public class ProductService {
         this.repository = productRepository;
     }
 
-    public void addProduct(Product product) {
-        repository.save(product);
+    public Product addProduct(Product product) {
+        return repository.save(product);
     }
 
     public List<Product> getProducts() {
         return repository.findAll();
+    }
+
+    public List<Product> getProductByStoreID(Integer id) {
+        return repository.getProductByStoreID(id);
     }
 
     public Product getProductByID(Integer id) {
@@ -38,6 +42,8 @@ public class ProductService {
 
     public List<Integer> getProductGreaterThanPrice(Double price){return repository.getProductGreaterThanPrice(price);}
 
-    public List<Integer> getProductWithName(String name){return repository.getProductWithName(name);}
+    public List<Product> getProductWithName(String name){return repository.getProductWithName(name);}
+
+    public void updateProductQuantity(Integer id,Integer quantity){repository.updateProductQuantity(id,quantity);}
 
 }

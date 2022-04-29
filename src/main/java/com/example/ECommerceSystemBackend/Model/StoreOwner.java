@@ -3,6 +3,8 @@ package com.example.ECommerceSystemBackend.Model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class StoreOwner {
@@ -18,8 +20,7 @@ public class StoreOwner {
     @Column(name = "PASSWORD")
     private String password;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private Store store;
+
 
     public StoreOwner(String name, String surname, String email, String password) {
         this.name = name;
@@ -28,16 +29,10 @@ public class StoreOwner {
         this.password = password;
     }
 
+
+
     public StoreOwner() {
 
-    }
-
-    public Store getStore() {
-        return store;
-    }
-
-    public void setStore(Store store) {
-        this.store = store;
     }
 
     public Integer getId() {

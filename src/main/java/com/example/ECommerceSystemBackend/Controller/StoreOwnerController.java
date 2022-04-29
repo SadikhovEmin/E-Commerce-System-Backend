@@ -39,11 +39,9 @@ public class StoreOwnerController {
     }
 
 
-    /*@PostMapping
+    @PostMapping
     public StoreOwner addStoreOwner(@RequestBody StoreOwner storeOwner) {
-        return storeOwnerService.;
+        return storeOwnerService.addStoreOwner(storeOwner);
     }
-
-     */
 
 }

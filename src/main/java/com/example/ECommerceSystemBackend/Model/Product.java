@@ -14,14 +14,15 @@ public class Product {
     private String name;
     @Column(name = "PRICE")
     private Double price;
+    @Column(name = "QUANTITY")
+    private Integer quantity;
     @Column(name = "TYPE")
     private ProductType type;
     @Column(name = "DESCRIPTION")
     private String description;
 
-    @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "Shop_ID", referencedColumnName = "ID")
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "Shop_ID", referencedColumnName = "id")
     public Store store;
 
     public Product() {
@@ -34,6 +35,15 @@ public class Product {
         this.store = store;
     }
 
+
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
 
     public String getDescription() {
         return description;
