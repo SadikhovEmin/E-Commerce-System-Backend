@@ -32,6 +32,15 @@ public class ProductService {
 
     public Product getProductByID(Integer id) {
         return repository.getProductByID(id);
+
+    public List<Product> getAscending() {
+        return repository.getProductInAscendingOrder();
+    }
+
+    public List<Product> getDescending() {
+        return repository.getProductInDescendingOrder();
+    }
+
     }
 
     public List<Integer> getProductWithType(ProductType productType){return repository.getProductWithType(productType);}

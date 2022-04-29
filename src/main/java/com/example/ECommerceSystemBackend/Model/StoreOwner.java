@@ -19,6 +19,12 @@ public class StoreOwner {
     private String email;
     @Column(name = "PASSWORD")
     private String password;
+    @Column(name = "MFA")
+    private boolean mfa;
+    @Column(name = "SECRET")
+    private String secret;
+
+    public StoreOwner() {}
 
 
 
@@ -27,12 +33,6 @@ public class StoreOwner {
         this.surname = surname;
         this.email = email;
         this.password = password;
-    }
-
-
-
-    public StoreOwner() {
-
     }
 
     public Integer getId() {
@@ -74,4 +74,21 @@ public class StoreOwner {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public boolean isMfa() {
+        return mfa;
+    }
+
+    public void setMfa(boolean mfa) {
+        this.mfa = mfa;
+    }
+
+    public String getSecret() {
+        return secret;
+    }
+
+    public void setSecret(String secret) {
+        this.secret = secret;
+    }
+    
 }

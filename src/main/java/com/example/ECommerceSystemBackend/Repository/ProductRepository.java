@@ -41,6 +41,11 @@ public interface ProductRepository extends JpaRepository<Product, Integer>  {
     @Transactional
     void updateProductQuantity(Integer id, Integer quantity);
 
+    @Query("select p from Product p order by p.price asc")
+    List<Product> getProductInAscendingOrder();
+
+    @Query("select p from Product p order by p.price desc")
+    List<Product> getProductInDescendingOrder();
 
 
 }

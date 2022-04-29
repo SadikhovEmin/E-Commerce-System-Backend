@@ -14,7 +14,6 @@ public class Store {
     @Column(name = "Name")
     public String name;
 
-
     @OneToOne(
             cascade = CascadeType.ALL
     )
@@ -26,6 +25,7 @@ public class Store {
             mappedBy = "store"
     )
     public List<Product> products = new ArrayList<>();
+
 
     public Store() {
     }

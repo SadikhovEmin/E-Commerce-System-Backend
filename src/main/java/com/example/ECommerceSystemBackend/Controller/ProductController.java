@@ -24,7 +24,7 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public Product getProducts(@PathVariable Integer id) {
+    public Product getProductsByID(@PathVariable Integer id) {
         return productService.getProductByID(id);
     }
 
@@ -66,8 +66,19 @@ public class ProductController {
     }
 
     @PostMapping
-    public Product getProductWithName(@RequestBody Product product) {
-        return productService.addProduct(product);
+    public List<Integer> getProductWithName(@PathVariable String name) {
+        return productService.getProductWithName(name);
+    }
+
+    @GetMapping("/ascending")
+    public List<Product> getAscending() {
+        return productService.getAscending();
+    }
+
+    @GetMapping("/descending")
+    public List<Product> getDescending() {
+        return productService.getDescending();
+
     }
 
 }

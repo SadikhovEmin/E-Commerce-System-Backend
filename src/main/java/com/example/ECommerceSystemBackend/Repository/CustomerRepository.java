@@ -33,6 +33,17 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
     @Query("select c from Customer c where c.email = ?1")
     Customer getCustomerByEmail(String email);
 
+    @Modifying
+    @Query("update Customer set mfa = ?2 where id = ?1 ")
+    @Transactional
+    void updateCustomerMfaById(Integer id, boolean mfa);
+
+    @Modifying
+    @Query("update Customer set mfa = ?2 where email = ?1 ")
+    @Transactional
+    void updateCustomerMfaByEmail(String email, boolean mfa);
+
     @Query("select c.id from Customer c where c.email = ?1")
     Integer getCustomerID(String email);
+
 }
