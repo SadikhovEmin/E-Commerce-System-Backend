@@ -1,41 +1,22 @@
+var storeOwnerEmail = sessionStorage.getItem("email")
+var storeOwnerID = sessionStorage.getItem("ID")
 
-var customerID = sessionStorage.getItem("ID")
-let customerEmail = sessionStorage.getItem("email")
 let infoEnable = false
 let passwordEnable = false
 
-
 window.onload = function() {
-  document.getElementById("nameTextField").value = sessionStorage.getItem("firstName")
-  document.getElementById("surnameTextField").value = sessionStorage.getItem("lastName")
-  document.getElementById("emailTextField").value = customerEmail
-  document.getElementById("oldPasswordTextField").value = sessionStorage.getItem("password")
-};
-
-function importFile(){
-  let input = document.createElement("input")
-  input.type = "file"
-  input.webkitdirectory = "true"
-
-  input.onchange = _this => {
-    console.log(URL.createObjectURL(input.files[0]))
-    document.getElementById("image").src = URL.createObjectURL(input.files[0])
-  }
-  input.click()
-}
+    document.getElementById("nameTextField").value = sessionStorage.getItem("storeName")
+    document.getElementById("emailTextField").value = storeOwnerEmail
+  };
 
 function infoEnabled(){
-    document.getElementById("nameTextField").disabled = false
-    document.getElementById("surnameTextField").disabled = false
     document.getElementById("emailTextField").disabled = false
     infoEnable = true
 }
 
 function infoDisabled(){
-  document.getElementById("nameTextField").disabled = true
-  document.getElementById("surnameTextField").disabled = true
-  document.getElementById("emailTextField").disabled = true
-  infoEnable = false
+    document.getElementById("emailTextField").disabled = true
+    infoEnable = false
 }
 
 function passwordEnabled(){
@@ -46,11 +27,11 @@ function passwordEnabled(){
 }
 
 function passwordDisabled(){
-  document.getElementById("oldPasswordTextField").disabled = true
-  document.getElementById("newPasswordTextField").disabled = true
-  document.getElementById("reNewPasswordTextField").disabled = true
-  passwordEnable = false
-}
+    document.getElementById("oldPasswordTextField").disabled = true
+    document.getElementById("newPasswordTextField").disabled = true
+    document.getElementById("reNewPasswordTextField").disabled = true
+    passwordEnable = false
+  }
 
 function changePassword(){
     let oldPassword = document.getElementById("oldPasswordTextField").value
@@ -58,7 +39,7 @@ function changePassword(){
     let rePassword = document.getElementById("reNewPasswordTextField").value; 
 
    
-    axios.get(`http://localhost:8080/customer/${customerID}/password`)
+    axios.get(`http://localhost:8080/storeOwner/${storeOwnerID}/password`)
       .then(function (response) {
         if(response.data != oldPassword) {
           alert("Old Password didn't match with your password")
@@ -74,8 +55,8 @@ function changePassword(){
         return
     }
 
-    axios.put('http://localhost:8080/customer/password', {
-        id: customerID,
+    axios.put('http://localhost:8080/storeOwner/password', {
+        id: storeOwnerID,
         password : password
       })
       .then(function (response) {
@@ -88,14 +69,10 @@ function changePassword(){
 }
 
 function changeInfo(){
-    let name = document.getElementById("nameTextField").value
-    let surname = document.getElementById("surnameTextField").value; 
     let email = document.getElementById("emailTextField").value; 
 
-    axios.put('http://localhost:8080/customer/info', {
-        id: customerID,
-        name: name, 
-        surname: surname, 
+    axios.put('http://localhost:8080/storeOwner/info', {
+        id: storeOwnerID,
         email : email
       })
       .then(function (response) {
