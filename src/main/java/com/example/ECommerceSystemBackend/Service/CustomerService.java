@@ -22,14 +22,13 @@ public class CustomerService {
         return repository.save(customer);
     }
 
-    public Customer getCustomer(Integer id) {return repository.getCustomerByID(id);}
+    public Customer getCustomerById(Integer id) {return repository.getCustomerByID(id);}
 
     public Customer getCustomer(String email) { return repository.getCustomerByEmail(email);}
 
-    public String loginCustomer(String email) {
-        String customerPasswordByEmail = repository.getCustomerPasswordByEmail(email);
-        return customerPasswordByEmail;
-    }
+    public Customer getCustomerByEmail(String email) {return repository.getCustomerByEmail(email);}
+
+    public String loginCustomer(String email) {return repository.getCustomerPasswordByEmail(email);}
 
     public List<Customer> getAllCustomers() {return repository.findAll();}
 
@@ -42,4 +41,6 @@ public class CustomerService {
     public void updateCustomerMfa(Customer customer, boolean mfa) {repository.updateCustomerMfaById(customer.getId(),mfa);}
 
     public void updateCustomerMfa(String email, boolean mfa) {repository.updateCustomerMfaByEmail(email,mfa);}
+  
+    public Integer getCustomerID(String email) {return repository.getCustomerID(email);}
 }
