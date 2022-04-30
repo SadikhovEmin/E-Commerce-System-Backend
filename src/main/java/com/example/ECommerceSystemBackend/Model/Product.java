@@ -1,6 +1,7 @@
 package com.example.ECommerceSystemBackend.Model;
 
 import com.example.ECommerceSystemBackend.Model.enums.ProductType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -9,44 +10,47 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-
-    @Lob
-    private byte[] image;
-
     @Column(name = "NAME")
     private String name;
-
     @Column(name = "PRICE")
     private Double price;
-
+    @Column(name = "QUANTITY")
+    private Integer quantity;
     @Column(name = "TYPE")
     private ProductType type;
-
     @Column(name = "DESCRIPTION")
     private String description;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "Shop_ID", referencedColumnName = "id")
+    public Store store;
 
     public Product() {
     }
 
-    public Product(String name, Double price, ProductType type) {
+    public Product(String name, Double price, ProductType type,Store store) {
         this.name = name;
         this.price = price;
         this.type = type;
+        this.store = store;
     }
 
-    public Product(String name, Double price, ProductType type, String description) {
-        this.name = name;
-        this.price = price;
-        this.type = type;
+
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
         this.description = description;
-    }
-
-    public byte[] getImage() {
-        return image;
-    }
-
-    public void setImage(byte[] image) {
-        this.image = image;
     }
 
     public Integer getId() {
@@ -81,11 +85,11 @@ public class Product {
         this.type = type;
     }
 
-    public String getDescription() {
-        return description;
+    public Store getStore() {
+        return store;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setStore(Store store) {
+        this.store = store;
     }
 }

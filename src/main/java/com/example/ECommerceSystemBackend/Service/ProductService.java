@@ -18,9 +18,20 @@ public class ProductService {
         this.repository = productRepository;
     }
 
-    public List<Product> findAll() {
+    public Product addProduct(Product product) {
+        return repository.save(product);
+    }
+
+    public List<Product> getProducts() {
         return repository.findAll();
     }
+
+    public List<Product> getProductByStoreID(Integer id) {
+        return repository.getProductByStoreID(id);
+    }
+
+    public Product getProductByID(Integer id) {
+        return repository.getProductByID(id);
 
     public List<Product> getAscending() {
         return repository.getProductInAscendingOrder();
@@ -30,8 +41,6 @@ public class ProductService {
         return repository.getProductInDescendingOrder();
     }
 
-    public void addProduct(Product product) {
-        repository.save(product);
     }
 
     public List<Integer> getProductWithType(ProductType productType){return repository.getProductWithType(productType);}
@@ -42,6 +51,8 @@ public class ProductService {
 
     public List<Integer> getProductGreaterThanPrice(Double price){return repository.getProductGreaterThanPrice(price);}
 
-    public List<Integer> getProductWithName(String name){return repository.getProductWithName(name);}
+    public List<Product> getProductWithName(String name){return repository.getProductWithName(name);}
+
+    public void updateProductQuantity(Integer id,Integer quantity){repository.updateProductQuantity(id,quantity);}
 
 }

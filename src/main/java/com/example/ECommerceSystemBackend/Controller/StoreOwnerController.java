@@ -1,5 +1,12 @@
 package com.example.ECommerceSystemBackend.Controller;
 
+import com.example.ECommerceSystemBackend.Model.Customer;
+import com.example.ECommerceSystemBackend.Model.DTO.CustomerInfoDTO;
+import com.example.ECommerceSystemBackend.Model.DTO.PasswordDTO;
+import com.example.ECommerceSystemBackend.Model.DTO.StoreOwnerInfoDTO;
+import com.example.ECommerceSystemBackend.Model.StoreOwner;
+import com.example.ECommerceSystemBackend.Repository.StoreOwnerRepository;
+import com.example.ECommerceSystemBackend.Service.StoreOwnerService;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,39 +30,40 @@ public class StoreOwnerController {
     StoreOwnerService storeOwnerService;
 
     @Autowired
+    StoreOwnerService storeOwnerService;
+  
+    @Autowired
     AuthenticationService authenticationService;
-
+  
     @Autowired
     SystemEmailAccountService systemEmailAccountService;
-    
-    @PostMapping
-    public String addCustomer(@RequestBody Map<String,String> storeOwnerMap) {
-        StoreOwner storeOwner = new StoreOwner();
-        storeOwner.setName(storeOwnerMap.get("name"));
-        storeOwner.setSurname(storeOwnerMap.get("surname"));
-        storeOwner.setEmail(storeOwnerMap.get("email"));
-        storeOwner.setPassword(storeOwnerMap.get("password"));
-        storeOwner.setSecret(authenticationService.generateSecret());
-        storeOwner.setMfa(Boolean.parseBoolean(storeOwnerMap.get("isMfa")));
 
-        var systemEmailAcc = systemEmailAccountService.getSystemEmailAccount("testforhw123@gmail.com");
-	    var systemEmail = new Email(systemEmailAcc,Hosts.GMAIL_SMTP,Ports.GMAIL_PORT_SSL);
-    
-        String verificationCode = codes.get(storeOwner.getEmail());
-        String enteredCode = storeOwnerMap.get("code");
-
-        if(enteredCode.equals(verificationCode)){
-            storeOwnerService.addStoreOwner(storeOwner);
-            codes.remove(storeOwner.getEmail()); 
-            if(storeOwner.isMfa()){
-                var qrCode = authenticationService.getUriForImage(storeOwner.getSecret(),storeOwner.getEmail());
-                systemEmail.SendAuthenticationCode(storeOwner.getEmail(),qrCode);
-            }
-            return "loginPage.html";
-        }
-        return "signUp.html";
+    @GetMapping("/{email}")
+    public StoreOwner getStoreOwner(@PathVariable String email) {
+        return storeOwnerService.getStoreOwnerByEmail(email);
     }
 
+    @GetMapping("/{id}/password")
+    public String getStoreOwnerOldPassword(@PathVariable String id) {
+        return storeOwnerService.getStoreOwnerOldPassword(Integer.parseInt(id));
+    }
+
+    @PutMapping(path = "/password")
+    public void updateStoreOwnerPassword(@RequestBody PasswordDTO passwordDTO) {
+        storeOwnerService.updateStoreOwnerPassword(passwordDTO);
+    }
+
+    @PutMapping(path = "/info")
+    public void updateStoreOwnerInfo(@RequestBody StoreOwnerInfoDTO storeOwner) {
+        storeOwnerService.updateStoreOwnerInfo(storeOwner);
+    }
+
+   
+    @PostMapping
+    public StoreOwner addStoreOwner(@RequestBody StoreOwner storeOwner) {
+        return storeOwnerService.addStoreOwner(storeOwner);
+    }
+    
     @PostMapping("/verification")
     public void setVerificiation(@RequestBody Map<String, String> mailMap){
         String storeOwnerEmail = mailMap.get("email");

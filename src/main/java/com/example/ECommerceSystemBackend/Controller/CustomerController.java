@@ -65,7 +65,6 @@ public class CustomerController {
 
     @GetMapping("/{id}/password")
     public String getCustomerOldPassword(@PathVariable String id) {
-        System.out.println(id);
         return customerService.getCustomerPassword(Integer.parseInt(id));
     }
 
