@@ -22,7 +22,8 @@ public class Customer {
     private String secret;
     @Transient
     private List<Product> basket;
-
+    @Transient
+    private Integer canLogin;
     public Customer() {}
 
     public Customer(String name, String surname, String email, String password) {
@@ -94,6 +95,14 @@ public class Customer {
 
     public void setMfa(boolean mfa) {
         this.mfa = mfa;
+    }
+
+    public Integer getCanLogin() {
+        return canLogin;
+    }
+
+    public void setCanLogin(Integer canLogin) {
+        this.canLogin = canLogin;
     }
 
     public void addProduct(Product product) {}

@@ -21,6 +21,7 @@ import java.util.Map;
 @RestController
 public class CustomerController {
     private Map<String, String> codes = new HashMap<String, String>();
+    private Map<String, Integer> mfa_codes = new HashMap<String, Integer>();
     
     @Autowired
     CustomerService customerService;
@@ -35,11 +36,12 @@ public class CustomerController {
     public Customer getCustomer(@PathVariable Integer id) {
         return customerService.getCustomer(id);
     }
-
+    /*
     @GetMapping
     public List<Customer> getCustomer() {
         return customerService.getAllCustomers();
     }
+    */
 
     @GetMapping("/{id}/password")
     public String getCustomerOldPassword(@PathVariable Integer id) {
@@ -54,6 +56,16 @@ public class CustomerController {
     @PutMapping(path = "/{id}/password")
     public void updateCustomerPassword(@RequestBody PasswordDTO passwordDTO) {
         customerService.updateCustomerPassword(passwordDTO);
+    }
+    
+    @GetMapping("/{email}")
+    public Customer getCustomer(@PathVariable String email) {
+        System.out.println("Hi");
+        Customer c = customerService.getCustomerByEmail(email);
+        Integer canLogin = mfa_codes.get(c.getEmail());
+        mfa_codes.remove(c.getEmail());
+        c.setCanLogin(canLogin);
+        return c;
     }
 
     @PostMapping
@@ -93,19 +105,22 @@ public class CustomerController {
         String code = systemEmail.SendAccountVerificationCode(customerEmail);
         codes.put(customerEmail, code);
     }
-    @PostMapping("/login")
-    public String login(@RequestBody Map<String, String> customerMap){
+    @PostMapping("/mfa")
+    public void mfa(@RequestBody Map<String, String> customerMap){
+        System.out.println("Hello"+customerMap.get("email")+customerMap.get("mfaCode"));
         String customerEmail = customerMap.get("email");
-        Customer c = customerService.getCustomer(customerEmail);
-        if(c.getPassword().equals(customerMap.get("password"))){
-            if(c.isMfa()){
-                if(authenticationService.verifyCode(customerMap.get("code"), c.getSecret())){
-                    return "customerHomepage.html";
-                }
-                return "loginPage.html";
+        Customer c = customerService.getCustomerByEmail(customerEmail);
+        if(c.isMfa()){
+            if(authenticationService.verifyCode(customerMap.get("mfaCode"), c.getSecret())){
+                mfa_codes.put(customerEmail,1);
             }
-            return "customerHomepage.html";
+            else{
+                mfa_codes.put(customerEmail,0);
+            }      
         }
-        return "loginPage.html";
+        else{
+            mfa_codes.put(customerEmail,1);
+        }
+        System.out.println(mfa_codes.get(customerEmail));
     }
 }

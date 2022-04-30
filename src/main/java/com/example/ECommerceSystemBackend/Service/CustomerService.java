@@ -26,6 +26,8 @@ public class CustomerService {
 
     public Customer getCustomer(String email) { return repository.getCustomerByEmail(email);}
 
+    public Customer getCustomerByEmail(String email) {return repository.getCustomerByEmail(email);}
+
     public String loginCustomer(String email) {
         String customerPasswordByEmail = repository.getCustomerPasswordByEmail(email);
         return customerPasswordByEmail;
