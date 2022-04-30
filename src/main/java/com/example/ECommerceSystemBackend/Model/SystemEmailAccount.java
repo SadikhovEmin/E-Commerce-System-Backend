@@ -16,7 +16,8 @@ public class SystemEmailAccount {
     @Column(name = "PASSWORD")
     private String password;
 
-    SystemEmailAccount() {}
+    public SystemEmailAccount() {}
+
     public SystemEmailAccount(String emailAddress, String emailPassword){
         this.email = emailAddress;
         this.password = emailPassword;
