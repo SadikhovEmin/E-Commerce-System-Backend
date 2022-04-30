@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 public class StoreOwnerController {
     private Map<String, String> codes = new HashMap<String, String>();
+    private Map<String, Integer> mfa_codes = new HashMap<String, Integer>();
 
     @Autowired
     StoreOwnerService storeOwnerService;
@@ -38,7 +39,12 @@ public class StoreOwnerController {
 
     @GetMapping("/{email}")
     public StoreOwner getStoreOwner(@PathVariable String email) {
-        return storeOwnerService.getStoreOwnerByEmail(email);
+        System.out.println("Hi");
+        StoreOwner c = storeOwnerService.getStoreOwnerByEmail(email);
+        Integer canLogin = mfa_codes.get(c.getEmail());
+        mfa_codes.remove(c.getEmail());
+        c.setCanLogin(canLogin);
+        return c;
     }
 
     @GetMapping("/{id}/password")
@@ -86,6 +92,25 @@ public class StoreOwnerController {
             return "customerHomepage.html";
         }
         return "loginPage.html";
+    }
+
+    @PostMapping("/mfa")
+    public void mfa(@RequestBody Map<String, String> customerMap){
+        System.out.println("Hello"+customerMap.get("email")+customerMap.get("mfaCode"));
+        String customerEmail = customerMap.get("email");
+        StoreOwner c = storeOwnerService.getStoreOwnerByEmail(customerEmail);
+        if(c.isMfa()){
+            if(authenticationService.verifyCode(customerMap.get("mfaCode"), c.getSecret())){
+                mfa_codes.put(customerEmail,1);
+            }
+            else{
+                mfa_codes.put(customerEmail,0);
+            }
+        }
+        else{
+            mfa_codes.put(customerEmail,1);
+        }
+        System.out.println(mfa_codes.get(customerEmail));
     }
 
 }

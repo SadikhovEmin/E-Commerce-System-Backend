@@ -22,7 +22,9 @@ import java.util.Map;
 @CrossOrigin
 public class CustomerController {
     private Map<String, String> codes = new HashMap<String, String>();
-    
+    private Map<String, Integer> mfa_codes = new HashMap<String, Integer>();
+
+
     @Autowired
     CustomerService customerService;
 
@@ -52,7 +54,12 @@ public class CustomerController {
 
     @GetMapping("/{email}")
     public Customer getCustomer(@PathVariable String email) {
-        return customerService.getCustomerByEmail(email);
+        System.out.println("Hi");
+        Customer c = customerService.getCustomerByEmail(email);
+        Integer canLogin = mfa_codes.get(c.getEmail());
+        mfa_codes.remove(c.getEmail());
+        c.setCanLogin(canLogin);
+        return c;
     }
 
     @GetMapping("/{id}/password")
@@ -122,4 +129,24 @@ public class CustomerController {
         }
         return "loginPage.html";
     }
+
+    @PostMapping("/mfa")
+    public void mfa(@RequestBody Map<String, String> customerMap){
+        System.out.println("Hello"+customerMap.get("email")+customerMap.get("mfaCode"));
+        String customerEmail = customerMap.get("email");
+        Customer c = customerService.getCustomerByEmail(customerEmail);
+        if(c.isMfa()){
+            if(authenticationService.verifyCode(customerMap.get("mfaCode"), c.getSecret())){
+                mfa_codes.put(customerEmail,1);
+            }
+            else{
+                mfa_codes.put(customerEmail,0);
+            }
+        }
+        else{
+            mfa_codes.put(customerEmail,1);
+        }
+        System.out.println(mfa_codes.get(customerEmail));
+    }
+
 }

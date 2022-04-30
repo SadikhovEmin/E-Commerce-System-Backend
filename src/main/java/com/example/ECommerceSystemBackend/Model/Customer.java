@@ -22,6 +22,8 @@ public class Customer {
     private String secret = "";
     @Transient
     private List<Product> basket;
+    @Transient
+    private Integer canLogin;
 
     public Customer() {}
 
@@ -30,6 +32,14 @@ public class Customer {
         this.surname = surname;
         this.email = email;
         this.password = password;
+    }
+
+    public Integer getCanLogin() {
+        return canLogin;
+    }
+
+    public void setCanLogin(Integer canLogin) {
+        this.canLogin = canLogin;
     }
 
     public Integer getId() {
