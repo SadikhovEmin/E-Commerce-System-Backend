@@ -33,6 +33,14 @@ public class Customer {
         this.password = password;
     }
 
+    public Integer getCanLogin() {
+        return canLogin;
+    }
+
+    public void setCanLogin(Integer canLogin) {
+        this.canLogin = canLogin;
+    }
+
     public Integer getId() {
         return id;
     }

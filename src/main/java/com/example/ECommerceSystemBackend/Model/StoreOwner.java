@@ -23,6 +23,8 @@ public class StoreOwner {
     private boolean mfa = false;
     @Column(name = "SECRET")
     private String secret = "";
+    @Transient
+    private Integer canLogin;
 
     public StoreOwner() {}
 
@@ -33,6 +35,14 @@ public class StoreOwner {
         this.surname = surname;
         this.email = email;
         this.password = password;
+    }
+
+    public Integer getCanLogin() {
+        return canLogin;
+    }
+
+    public void setCanLogin(Integer canLogin) {
+        this.canLogin = canLogin;
     }
 
     public Integer getId() {
