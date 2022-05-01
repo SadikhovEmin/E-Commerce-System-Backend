@@ -1,17 +1,12 @@
 package com.example.ECommerceSystemBackend.Controller;
 
-import com.example.ECommerceSystemBackend.Model.Customer;
-import com.example.ECommerceSystemBackend.Model.DTO.CustomerInfoDTO;
-import com.example.ECommerceSystemBackend.Model.DTO.PasswordDTO;
-import com.example.ECommerceSystemBackend.Model.DTO.StoreOwnerInfoDTO;
-import com.example.ECommerceSystemBackend.Model.StoreOwner;
-import com.example.ECommerceSystemBackend.Repository.StoreOwnerRepository;
-import com.example.ECommerceSystemBackend.Service.StoreOwnerService;
 import java.util.HashMap;
 import java.util.Map;
 
 import com.example.ECommerceSystemBackend.Model.Email;
 import com.example.ECommerceSystemBackend.Model.StoreOwner;
+import com.example.ECommerceSystemBackend.Model.DTO.PasswordDTO;
+import com.example.ECommerceSystemBackend.Model.DTO.StoreOwnerInfoDTO;
 import com.example.ECommerceSystemBackend.Model.enums.Hosts;
 import com.example.ECommerceSystemBackend.Model.enums.Ports;
 import com.example.ECommerceSystemBackend.Service.AuthenticationService;
@@ -19,7 +14,14 @@ import com.example.ECommerceSystemBackend.Service.StoreOwnerService;
 import com.example.ECommerceSystemBackend.Service.SystemEmailAccountService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping("/storeOwner")
 @RestController

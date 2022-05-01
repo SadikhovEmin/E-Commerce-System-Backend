@@ -1,5 +1,8 @@
 package com.example.ECommerceSystemBackend;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import com.example.ECommerceSystemBackend.Model.Customer;
 import com.example.ECommerceSystemBackend.Model.PlatformManager;
 import com.example.ECommerceSystemBackend.Model.StoreOwner;
@@ -11,9 +14,6 @@ import com.example.ECommerceSystemBackend.Service.AuthenticationService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-
-import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest
