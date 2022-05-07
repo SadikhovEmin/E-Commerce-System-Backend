@@ -24,6 +24,8 @@ public class StoreOwner {
     private boolean mfa = false;
     @Column(name = "SECRET")
     private String secret = "";
+    @Column(name = "WALLET_ADDRESS")
+    private String walletAddress;
     @Transient
     private Integer canLogin;
 
