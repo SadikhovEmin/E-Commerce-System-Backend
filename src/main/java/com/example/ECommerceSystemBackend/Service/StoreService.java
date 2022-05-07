@@ -15,5 +15,5 @@ public class StoreService {
         return storeRepository.getStoreWithSOId(id);
     }
 
-
+    public void createNewStore(Store store){storeRepository.save(store);}
 }

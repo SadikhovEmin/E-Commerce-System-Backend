@@ -35,6 +35,14 @@ public class Store {
         this.name = name;
     }
 
+    public StoreOwner getStoreOwner() {
+        return storeOwner;
+    }
+
+    public void setStoreOwner(StoreOwner storeOwner) {
+        this.storeOwner = storeOwner;
+    }
+
     public Integer getId() {
         return id;
     }
