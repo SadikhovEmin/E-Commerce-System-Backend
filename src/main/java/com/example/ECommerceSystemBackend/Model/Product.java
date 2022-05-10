@@ -1,9 +1,9 @@
 package com.example.ECommerceSystemBackend.Model;
 
 import com.example.ECommerceSystemBackend.Model.enums.ProductType;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+
 
 @Entity
 public class Product {
@@ -21,7 +21,7 @@ public class Product {
     @Column(name = "DESCRIPTION")
     private String description;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Shop_ID", referencedColumnName = "id")
     public Store store;
 
