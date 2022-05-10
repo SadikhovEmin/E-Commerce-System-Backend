@@ -66,4 +66,14 @@ public class Comment {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id=" + id +
+                ", content='" + content + '\'' +
+                ", product=" + product +
+                ", customer=" + customer +
+                '}';
+    }
 }

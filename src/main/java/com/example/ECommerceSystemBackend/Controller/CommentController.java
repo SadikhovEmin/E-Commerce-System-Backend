@@ -5,6 +5,8 @@ import com.example.ECommerceSystemBackend.Service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(path = "/comments")
 @CrossOrigin
@@ -20,5 +22,10 @@ public class CommentController {
     @PostMapping
     public void addComment(@RequestBody Comment comment) {
         service.saveComment(comment);
+    }
+
+    @GetMapping(path = "/{id}")
+    public List<Comment> getCommentById(@PathVariable Integer id) {
+        return service.getCommentById(id);
     }
 }
