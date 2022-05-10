@@ -16,17 +16,7 @@ public interface StoreOwnerRepository extends JpaRepository<StoreOwner, Integer>
     StoreOwner getStoreOwnerByEmail(String email);
 
     @Query("select s.password from StoreOwner s where s.id = ?1")
-    String getStoreOwnerOldPasword(int id);
-
-    @Modifying
-    @Query("update StoreOwner set password = ?2 where id = ?1 ")
-    @Transactional
-    void updateStoreOwnerPassword(Integer id, String password);
-
-    @Modifying
-    @Query("update StoreOwner set email = ?2  where id = ?1 ")
-    @Transactional
-    void updateStoreOwnerInfo(Integer id, String email);
+    String getStoreOwnerOldPassword(int id);
 
     @Query("select so from StoreOwner so where so.id = ?1")
     StoreOwner getStoreOwnerById(Integer id);
@@ -40,5 +30,15 @@ public interface StoreOwnerRepository extends JpaRepository<StoreOwner, Integer>
     @Query("update StoreOwner set mfa = ?2 where email = ?1 ")
     @Transactional
     void updateStoreOwnerMfaByEmail(String email, boolean mfa);
+
+    @Modifying
+    @Query("update StoreOwner set password = ?2 where id = ?1 ")
+    @Transactional
+    void updateStoreOwnerPassword(Integer id, String password);
+
+    @Modifying
+    @Query("update StoreOwner set email = ?2  where id = ?1 ")
+    @Transactional
+    void updateStoreOwnerInfo(Integer id, String email);
 
 }

@@ -12,7 +12,7 @@ import javax.transaction.Transactional;
 public interface StoreRepository extends JpaRepository<Store, Integer> {
     
     @Query("select s from Store s where s.storeOwner.id = ?1")
-    Store getStoreWithSOId(Integer id); // FIXME:  With ?
+    Store getStoreByStoreOwnerId(Integer id);
 
     @Modifying
     @Query("update Store set name = ?2  where storeOwner.id = ?1 ")

@@ -41,19 +41,6 @@ public class CustomerController {
     public Integer getCustomerID(@PathVariable String email) {
         return customerService.getCustomerId(email);
     }
-    /*
-     * @GetMapping
-     * public List<Customer> getCustomers() {
-     * return customerService.getAllCustomers();
-     * }
-     */
-
-    /*
-     * @GetMapping("/{email}")
-     * public String getCustomerPassword(@PathVariable String email) {
-     * return customerService.loginCustomer(email);
-     * }
-     */
 
     @GetMapping("/{email}")
     public Customer getCustomer(@PathVariable String email) {
@@ -119,7 +106,6 @@ public class CustomerController {
 
     @PostMapping("/mfa")
     public void mfa(@RequestBody Map<String, String> customerMap) {
-        System.out.println("Hello" + customerMap.get("email") + customerMap.get("mfaCode"));
         String customerEmail = customerMap.get("email");
         Customer c = customerService.getCustomerByEmail(customerEmail);
         if (c.isMfa()) {
@@ -131,7 +117,6 @@ public class CustomerController {
         } else {
             mfa_codes.put(customerEmail, 1);
         }
-        System.out.println(mfa_codes.get(customerEmail));
     }
 
 }

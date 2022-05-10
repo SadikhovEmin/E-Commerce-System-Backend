@@ -22,13 +22,9 @@ public class StoreController {
     private ProductService productService;
 
     @GetMapping("/{storeOwnerID}")
-    public Store getStoreWithSOID(@PathVariable String storeOwnerID) {
-        return storeService.getStoreWithSOID(Integer.parseInt(storeOwnerID));
-    }
+    public Store getStoreByStoreOwnerId(@PathVariable String storeOwnerID) {return storeService.getStoreByStoreOwnerId(Integer.parseInt(storeOwnerID));}
 
     @GetMapping("/product/{productId}")
-    public Store getStorebyProductId(@PathVariable String productId) {
-        return productService.getProductById(Integer.parseInt(productId)).getStore();
-    }
+    public Store getStorebyProductId(@PathVariable String productId) {return productService.getProductById(Integer.parseInt(productId)).getStore();}
 
 }
