@@ -1,9 +1,17 @@
 package com.example.ECommerceSystemBackend.Controller;
 
+
+import com.example.ECommerceSystemBackend.Model.*;
+import com.example.ECommerceSystemBackend.Model.DTO.CustomerInfoDTO;
+import com.example.ECommerceSystemBackend.Model.DTO.PasswordDTO;
+import com.example.ECommerceSystemBackend.Model.DTO.StoreOwnerInfoDTO;
+import com.example.ECommerceSystemBackend.Model.DTO.StoreOwnerStoreDTO;
+import com.example.ECommerceSystemBackend.Repository.StoreOwnerRepository;
+import com.example.ECommerceSystemBackend.Service.StoreOwnerService;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import com.example.ECommerceSystemBackend.Model.Email;
 import com.example.ECommerceSystemBackend.Model.StoreOwner;
 import com.example.ECommerceSystemBackend.Model.DTO.PasswordDTO;
 import com.example.ECommerceSystemBackend.Model.DTO.StoreOwnerInfoDTO;
@@ -62,6 +70,11 @@ public class StoreOwnerController {
         storeOwnerService.updateStoreOwnerInfo(storeOwner);
     }
 
+    @PostMapping("/store")
+    public void createNewStore(@RequestBody StoreOwnerStoreDTO storeOwnerStoreDTO){
+        storeOwnerService.createNewStore(storeOwnerStoreDTO);
+    }
+   
     @PostMapping
     public StoreOwner addStoreOwner(@RequestBody StoreOwner storeOwner) {
         return storeOwnerService.addStoreOwner(storeOwner);

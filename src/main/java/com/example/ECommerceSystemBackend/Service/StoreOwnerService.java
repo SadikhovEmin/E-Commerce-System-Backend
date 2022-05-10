@@ -3,8 +3,11 @@ package com.example.ECommerceSystemBackend.Service;
 import com.example.ECommerceSystemBackend.Model.StoreOwner;
 import com.example.ECommerceSystemBackend.Model.DTO.PasswordDTO;
 import com.example.ECommerceSystemBackend.Model.DTO.StoreOwnerInfoDTO;
+import com.example.ECommerceSystemBackend.Model.DTO.StoreOwnerStoreDTO;
+import com.example.ECommerceSystemBackend.Model.Store;
+import com.example.ECommerceSystemBackend.Model.StoreOwner;
 import com.example.ECommerceSystemBackend.Repository.StoreOwnerRepository;
-
+import com.example.ECommerceSystemBackend.Repository.StoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +16,9 @@ public class StoreOwnerService {
 
     @Autowired
     private StoreOwnerRepository storeOwnerRepository;
+
+    @Autowired
+    private StoreRepository storeRepository;
 
     public StoreOwner addStoreOwner(StoreOwner storeOwner) {
         return storeOwnerRepository.save(storeOwner);
@@ -47,7 +53,14 @@ public class StoreOwnerService {
     }
 
     public void updateStoreOwnerInfo(StoreOwnerInfoDTO storeOwner) {
-        storeOwnerRepository.updateStoreOwnerInfo(storeOwner.getId(), storeOwner.getEmail());
+        storeRepository.updateStoreInfo(storeOwner.getId(),storeOwner.getStoreName());
+        storeOwnerRepository.updateStoreOwnerInfo(storeOwner.getId(),storeOwner.getEmail());
     }
-    
+
+    public void createNewStore(StoreOwnerStoreDTO storeOwnerStoreDTO) {
+        Store store = new Store(storeOwnerStoreDTO.getStoreName());
+        StoreOwner storeOwner = storeOwnerRepository.getStoreOwnerById(storeOwnerStoreDTO.getStoreOwnerID());
+        store.setStoreOwner(storeOwner);
+        storeRepository.save(store);
+    }
 }

@@ -66,4 +66,8 @@ public class ProductService {
         repository.updateProductQuantity(id, quantity);
     }
 
+    public Product getProductById(Integer id) {
+        return repository.getProductByID(id);
+    }
+
 }

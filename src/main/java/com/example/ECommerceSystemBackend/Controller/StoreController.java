@@ -30,4 +30,5 @@ public class StoreController {
     public Store getStorebyProductId(@PathVariable String productId) {
         return productService.getProductById(Integer.parseInt(productId)).getStore();
     }
+
 }
