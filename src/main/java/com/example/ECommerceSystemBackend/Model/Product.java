@@ -26,7 +26,6 @@ public class Product {
     private ProductType type;
     @Column(name = "DESCRIPTION")
     private String description;
-
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "Shop_ID", referencedColumnName = "id")
     public Store store;
@@ -34,14 +33,12 @@ public class Product {
     public Product() {
     }
 
-    public Product(String name, Double price, ProductType type,Store store) {
+    public Product(String name, Double price, ProductType type, Store store) {
         this.name = name;
         this.price = price;
         this.type = type;
         this.store = store;
     }
-
-
 
     public Integer getQuantity() {
         return quantity;

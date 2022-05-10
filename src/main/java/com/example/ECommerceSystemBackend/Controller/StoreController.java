@@ -1,6 +1,7 @@
 package com.example.ECommerceSystemBackend.Controller;
 
 import com.example.ECommerceSystemBackend.Model.Store;
+import com.example.ECommerceSystemBackend.Service.ProductService;
 import com.example.ECommerceSystemBackend.Service.StoreService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +18,16 @@ public class StoreController {
 
     @Autowired
     private StoreService storeService;
-
+    @Autowired
+    private ProductService productService;
 
     @GetMapping("/{storeOwnerID}")
-    public Store getStoreWithSOID(@PathVariable String storeOwnerID){
+    public Store getStoreWithSOID(@PathVariable String storeOwnerID) {
         return storeService.getStoreWithSOID(Integer.parseInt(storeOwnerID));
     }
 
-
+    @GetMapping("/product/{productId}")
+    public Store getStorebyProductId(@PathVariable String productId) {
+        return productService.getProductById(Integer.parseInt(productId)).getStore();
+    }
 }

@@ -1,6 +1,5 @@
 package com.example.ECommerceSystemBackend.Repository;
 
-
 import javax.transaction.Transactional;
 
 import com.example.ECommerceSystemBackend.Model.StoreOwner;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface StoreOwnerRepository extends JpaRepository<StoreOwner, Integer> {
-
 
     @Query("select s from StoreOwner s where s.email = ?1")
     StoreOwner getStoreOwnerByEmail(String email);
@@ -31,7 +29,7 @@ public interface StoreOwnerRepository extends JpaRepository<StoreOwner, Integer>
     void updateStoreOwnerInfo(Integer id, String email);
 
     @Query("select so from StoreOwner so where so.id = ?1")
-    StoreOwner getStoreOwnerById (Integer id);
+    StoreOwner getStoreOwnerById(Integer id);
 
     @Modifying
     @Query("update StoreOwner set mfa = ?2 where id = ?1 ")

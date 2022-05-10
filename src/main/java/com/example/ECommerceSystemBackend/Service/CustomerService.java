@@ -22,25 +22,48 @@ public class CustomerService {
         return repository.save(customer);
     }
 
-    public Customer getCustomerById(Integer id) {return repository.getCustomerByID(id);}
+    public Customer getCustomerById(Integer id) {
+        return repository.getCustomerById(id);
+    }
 
-    public Customer getCustomer(String email) { return repository.getCustomerByEmail(email);}
+    public Customer getCustomer(String email) {
+        return repository.getCustomerByEmail(email);
+    } // same code line 29
 
-    public Customer getCustomerByEmail(String email) {return repository.getCustomerByEmail(email);}
+    public Customer getCustomerByEmail(String email) {
+        return repository.getCustomerByEmail(email);
+    }
 
-    public String loginCustomer(String email) {return repository.getCustomerPasswordByEmail(email);}
+    public String loginCustomer(String email) {
+        return repository.getCustomerPasswordByEmail(email);
+    }
 
-    public List<Customer> getAllCustomers() {return repository.findAll();}
+    public List<Customer> getAllCustomers() {
+        return repository.findAll();
+    }
 
-    public void updateCustomerInfo(CustomerInfoDTO customer) { repository.updateCustomerInfo(customer.getId(), customer.getName(),customer.getSurname(), customer.getEmail());}
+    public void updateCustomerInfo(CustomerInfoDTO customer) {
+        repository.updateCustomerInfo(customer.getId(), customer.getName(), customer.getSurname(), customer.getEmail());
+    }
 
-    public void updateCustomerPassword(PasswordDTO passwordDTO) {repository.updateCustomerPassword(passwordDTO.getId(),passwordDTO.getPassword());}
+    public void updateCustomerPassword(PasswordDTO passwordDTO) {
+        repository.updateCustomerPassword(passwordDTO.getId(), passwordDTO.getPassword());
+    }
 
-    public String getCustomerPassword(Integer id){return repository.getCustomerPassword(id);}
+    public String getCustomerPassword(Integer id) {
+        return repository.getCustomerPassword(id);
+    }
 
-    public void updateCustomerMfa(Customer customer, boolean mfa) {repository.updateCustomerMfaById(customer.getId(),mfa);}
+    public void updateCustomerMfa(Customer customer, boolean mfa) {
+        repository.updateCustomerMfaById(customer.getId(), mfa);
+    }
 
-    public void updateCustomerMfa(String email, boolean mfa) {repository.updateCustomerMfaByEmail(email,mfa);}
-  
-    public Integer getCustomerID(String email) {return repository.getCustomerID(email);}
+    public void updateCustomerMfa(String email, boolean mfa) {
+        repository.updateCustomerMfaByEmail(email, mfa);
+    }
+
+    public Integer getCustomerId(String email) {
+        return repository.getCustomerId(email);
+    }
+    
 }

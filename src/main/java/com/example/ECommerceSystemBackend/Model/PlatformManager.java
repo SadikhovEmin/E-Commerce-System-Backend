@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 @Entity
 public class PlatformManager {
     @Id
@@ -23,7 +24,8 @@ public class PlatformManager {
     @Column(name = "SECRET")
     private String secret;
 
-    public PlatformManager() {}
+    public PlatformManager() {
+    }
 
     public PlatformManager(String name, String surname, String email, String password) {
         this.name = name;
@@ -39,7 +41,7 @@ public class PlatformManager {
     public void setId(Integer id) {
         this.id = id;
     }
-    
+
     public String getName() {
         return name;
     }
@@ -87,5 +89,5 @@ public class PlatformManager {
     public void setSecret(String secret) {
         this.secret = secret;
     }
-    
+
 }

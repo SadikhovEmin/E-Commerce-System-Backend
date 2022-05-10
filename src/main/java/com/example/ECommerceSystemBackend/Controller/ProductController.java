@@ -32,12 +32,12 @@ public class ProductController {
 
     @GetMapping("/{id}")
     public Product getProductsByID(@PathVariable Integer id) {
-        return productService.getProductByID(id);
+        return productService.getProductById(id);
     }
 
     @GetMapping("/store/{id}")
     public List<Product> getProductsWithStoreID(@PathVariable String id) {
-        return productService.getProductByStoreID(Integer.parseInt(id));
+        return productService.getProductByStoreId(Integer.parseInt(id));
     }
 
     @GetMapping("/searchType/{type}")
@@ -67,7 +67,7 @@ public class ProductController {
 
     @PutMapping("/stock")
     public void updateProductQuantity(@RequestBody ProductStockDTO productStockDTO) {
-        productService.updateProductQuantity(productStockDTO.getId(),productStockDTO.getQuantity());
+        productService.updateProductQuantity(productStockDTO.getId(), productStockDTO.getQuantity());
         System.out.println(productStockDTO.getId());
         System.out.println(productStockDTO.getQuantity());
     }
@@ -85,7 +85,6 @@ public class ProductController {
     @GetMapping("/descending")
     public List<Product> getDescending() {
         return productService.getDescending();
-
     }
 
 }

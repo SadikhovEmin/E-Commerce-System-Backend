@@ -1,7 +1,6 @@
 package com.example.ECommerceSystemBackend.Model.DTO;
 
 public class CustomerInfoDTO {
-
     public Integer id;
     public String name;
     public String surname;

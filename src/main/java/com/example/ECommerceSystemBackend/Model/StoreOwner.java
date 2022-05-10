@@ -25,13 +25,12 @@ public class StoreOwner {
     @Column(name = "SECRET")
     private String secret = "";
     @Column(name = "WALLET_ADDRESS")
-    private String walletAddress;
+    private String walletAddress = "";
     @Transient
     private Integer canLogin;
 
-    public StoreOwner() {}
-
-
+    public StoreOwner() {
+    }
 
     public StoreOwner(String name, String surname, String email, String password) {
         this.name = name;
@@ -103,5 +102,13 @@ public class StoreOwner {
     public void setSecret(String secret) {
         this.secret = secret;
     }
-    
+
+    public String getWalletAddress() {
+        return walletAddress;
+    }
+
+    public void setWalletAddress(String walletAddress) {
+        this.walletAddress = walletAddress;
+    }
+
 }

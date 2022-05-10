@@ -1,11 +1,12 @@
 package com.example.ECommerceSystemBackend.Model.DTO;
 
 public class StoreOwnerInfoDTO {
-
     public Integer id;
     public String email;
 
-    public Integer getId() {return id;}
+    public Integer getId() {
+        return id;
+    }
 
     public void setId(Integer id) {
         this.id = id;

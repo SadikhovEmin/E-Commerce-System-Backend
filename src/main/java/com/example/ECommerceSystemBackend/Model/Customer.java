@@ -24,7 +24,9 @@ public class Customer {
     private List<Product> basket;
     @Transient
     private Integer canLogin;
-    public Customer() {}
+
+    public Customer() {
+    }
 
     public Customer(String name, String surname, String email, String password) {
         this.name = name;
@@ -32,7 +34,7 @@ public class Customer {
         this.email = email;
         this.password = password;
     }
-    
+
     public Integer getId() {
         return id;
     }
@@ -88,7 +90,7 @@ public class Customer {
     public void setSecret(String secret) {
         this.secret = secret;
     }
-    
+
     public boolean isMfa() {
         return mfa;
     }
@@ -104,11 +106,6 @@ public class Customer {
     public void setCanLogin(Integer canLogin) {
         this.canLogin = canLogin;
     }
-
-    public void addProduct(Product product) {}
-    public void removeProduct(Product product) {}
-    public void checkout() {}
-    public void addFunds() {}
 
     @Override
     public String toString() {
