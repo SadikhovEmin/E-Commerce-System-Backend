@@ -12,7 +12,7 @@ import javax.transaction.Transactional;
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
     @Query("select c from Customer c where c.id = ?1")
-    Customer getCustomerByID (Integer id);
+    Customer getCustomerById(Integer id);
 
     @Modifying
     @Query("update Customer set name = ?2 , surname = ?3, email = ?4  where id = ?1 ")
@@ -44,6 +44,6 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
     void updateCustomerMfaByEmail(String email, boolean mfa);
 
     @Query("select c.id from Customer c where c.email = ?1")
-    Integer getCustomerID(String email);
+    Integer getCustomerId(String email);
 
 }

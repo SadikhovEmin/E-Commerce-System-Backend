@@ -26,12 +26,12 @@ public class ProductService {
         return repository.findAll();
     }
 
-    public List<Product> getProductByStoreID(Integer id) {
-        return repository.getProductByStoreID(id);
+    public List<Product> getProductByStoreId(Integer id) {
+        return repository.getProductByStoreId(id);
     }
 
-    public Product getProductByID(Integer id) {
-        return repository.getProductByID(id);
+    public Product getProductById(Integer id) {
+        return repository.getProductById(id);
     }
 
     public List<Product> getAscending() {
@@ -42,18 +42,29 @@ public class ProductService {
         return repository.getProductInDescendingOrder();
     }
 
+    public List<Integer> getProductWithType(ProductType productType) {
+        return repository.getProductWithType(productType);
+    }
 
-    public List<Integer> getProductWithType(ProductType productType){return repository.getProductWithType(productType);}
+    public List<Integer> getProductWithPrice(Double price) {
+        return repository.getProductWithPrice(price);
+    }
 
-    public List<Integer> getProductWithPrice(Double price){return repository.getProductWithPrice(price);}
+    public List<Integer> getProductLessThanPrice(Double price) {
+        return repository.getProductLessThanPrice(price);
+    }
 
-    public List<Integer> getProductLessThanPrice(Double price){return repository.getProductLessThanPrice(price);}
+    public List<Integer> getProductGreaterThanPrice(Double price) {
+        return repository.getProductGreaterThanPrice(price);
+    }
 
-    public List<Integer> getProductGreaterThanPrice(Double price){return repository.getProductGreaterThanPrice(price);}
+    public List<Product> getProductWithName(String name) {
+        return repository.getProductWithName(name);
+    }
 
-    public List<Product> getProductWithName(String name){return repository.getProductWithName(name);}
-
-    public void updateProductQuantity(Integer id,Integer quantity){repository.updateProductQuantity(id,quantity);}
+    public void updateProductQuantity(Integer id, Integer quantity) {
+        repository.updateProductQuantity(id, quantity);
+    }
 
     public Product getProductById(Integer id) {
         return repository.getProductByID(id);

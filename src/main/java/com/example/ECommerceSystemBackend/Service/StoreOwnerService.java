@@ -1,9 +1,8 @@
 package com.example.ECommerceSystemBackend.Service;
 
-import com.example.ECommerceSystemBackend.Model.Customer;
+import com.example.ECommerceSystemBackend.Model.StoreOwner;
 import com.example.ECommerceSystemBackend.Model.DTO.PasswordDTO;
 import com.example.ECommerceSystemBackend.Model.DTO.StoreOwnerInfoDTO;
-
 import com.example.ECommerceSystemBackend.Model.DTO.StoreOwnerStoreDTO;
 import com.example.ECommerceSystemBackend.Model.Store;
 import com.example.ECommerceSystemBackend.Model.StoreOwner;
@@ -25,13 +24,21 @@ public class StoreOwnerService {
         return storeOwnerRepository.save(storeOwner);
     }
 
-    public StoreOwner getStoreOwner(Integer id){return storeOwnerRepository.getStoreOwnerById(id);}
+    public StoreOwner getStoreOwner(Integer id) {
+        return storeOwnerRepository.getStoreOwnerById(id);
+    }
 
-    public StoreOwner getStoreOwner(String email){return storeOwnerRepository.getStoreOwnerByEmail(email);}
-    
-    public void updateStoreOwnerMfa(StoreOwner storeOwner, boolean mfa) {storeOwnerRepository.updateStoreOwnerMfaById(storeOwner.getId(),mfa);}
+    public StoreOwner getStoreOwner(String email) {
+        return storeOwnerRepository.getStoreOwnerByEmail(email);
+    }
 
-    public void updateStoreOwnerMfa(String email, boolean mfa) {storeOwnerRepository.updateStoreOwnerMfaByEmail(email,mfa);}
+    public void updateStoreOwnerMfa(StoreOwner storeOwner, boolean mfa) {
+        storeOwnerRepository.updateStoreOwnerMfaById(storeOwner.getId(), mfa);
+    }
+
+    public void updateStoreOwnerMfa(String email, boolean mfa) {
+        storeOwnerRepository.updateStoreOwnerMfaByEmail(email, mfa);
+    }
 
     public StoreOwner getStoreOwnerByEmail(String email) {
         return storeOwnerRepository.getStoreOwnerByEmail(email);
@@ -42,7 +49,7 @@ public class StoreOwnerService {
     }
 
     public void updateStoreOwnerPassword(PasswordDTO passwordDTO) {
-        storeOwnerRepository.updateStoreOwnerPassword(passwordDTO.getId(),passwordDTO.getPassword());
+        storeOwnerRepository.updateStoreOwnerPassword(passwordDTO.getId(), passwordDTO.getPassword());
     }
 
     public void updateStoreOwnerInfo(StoreOwnerInfoDTO storeOwner) {

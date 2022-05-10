@@ -1,14 +1,21 @@
 package com.example.ECommerceSystemBackend.Controller;
 
-import com.example.ECommerceSystemBackend.Model.DTO.ProductStockDTO;
-import com.example.ECommerceSystemBackend.Model.Product;
-import com.example.ECommerceSystemBackend.Model.enums.ProductType;
-import com.example.ECommerceSystemBackend.Repository.ProductRepository;
-import com.example.ECommerceSystemBackend.Service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+
+import com.example.ECommerceSystemBackend.Model.Product;
+import com.example.ECommerceSystemBackend.Model.DTO.ProductStockDTO;
+import com.example.ECommerceSystemBackend.Model.enums.ProductType;
+import com.example.ECommerceSystemBackend.Service.ProductService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping("/products")
 @RestController
@@ -25,12 +32,12 @@ public class ProductController {
 
     @GetMapping("/{id}")
     public Product getProductsByID(@PathVariable Integer id) {
-        return productService.getProductByID(id);
+        return productService.getProductById(id);
     }
 
     @GetMapping("/store/{id}")
     public List<Product> getProductsWithStoreID(@PathVariable String id) {
-        return productService.getProductByStoreID(Integer.parseInt(id));
+        return productService.getProductByStoreId(Integer.parseInt(id));
     }
 
     @GetMapping("/searchType/{type}")
@@ -60,7 +67,7 @@ public class ProductController {
 
     @PutMapping("/stock")
     public void updateProductQuantity(@RequestBody ProductStockDTO productStockDTO) {
-        productService.updateProductQuantity(productStockDTO.getId(),productStockDTO.getQuantity());
+        productService.updateProductQuantity(productStockDTO.getId(), productStockDTO.getQuantity());
         System.out.println(productStockDTO.getId());
         System.out.println(productStockDTO.getQuantity());
     }
@@ -78,7 +85,6 @@ public class ProductController {
     @GetMapping("/descending")
     public List<Product> getDescending() {
         return productService.getDescending();
-
     }
 
 }

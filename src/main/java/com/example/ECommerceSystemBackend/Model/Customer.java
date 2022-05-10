@@ -25,21 +25,14 @@ public class Customer {
     @Transient
     private Integer canLogin;
 
-    public Customer() {}
+    public Customer() {
+    }
 
     public Customer(String name, String surname, String email, String password) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
-    }
-
-    public Integer getCanLogin() {
-        return canLogin;
-    }
-
-    public void setCanLogin(Integer canLogin) {
-        this.canLogin = canLogin;
     }
 
     public Integer getId() {
@@ -97,7 +90,7 @@ public class Customer {
     public void setSecret(String secret) {
         this.secret = secret;
     }
-    
+
     public boolean isMfa() {
         return mfa;
     }
@@ -106,10 +99,13 @@ public class Customer {
         this.mfa = mfa;
     }
 
-    public void addProduct(Product product) {}
-    public void removeProduct(Product product) {}
-    public void checkout() {}
-    public void addFunds() {}
+    public Integer getCanLogin() {
+        return canLogin;
+    }
+
+    public void setCanLogin(Integer canLogin) {
+        this.canLogin = canLogin;
+    }
 
     @Override
     public String toString() {

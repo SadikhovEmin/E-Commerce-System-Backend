@@ -1,10 +1,8 @@
 package com.example.ECommerceSystemBackend.Model.DTO;
 
 public class ProductStockDTO {
-
     private Integer id;
     private Integer quantity;
-
 
     public ProductStockDTO(Integer id, Integer quantity) {
         this.id = id;
