@@ -13,23 +13,14 @@ public class Store {
     private Integer id;
     @Column(name = "Name")
     public String name;
-
-    @OneToOne(
-            cascade = CascadeType.ALL
-    )
+    @OneToOne(cascade = CascadeType.ALL)
     public StoreOwner storeOwner = new StoreOwner();
-
     @JsonIgnore
-    @OneToMany(
-            cascade = CascadeType.ALL,
-            mappedBy = "store"
-    )
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "store")
     public List<Product> products = new ArrayList<>();
-
 
     public Store() {
     }
-
 
     public Store(String name) {
         this.name = name;

@@ -11,9 +11,11 @@ public class StoreService {
     @Autowired
     private StoreRepository storeRepository;
 
-    public Store getStoreWithSOID(Integer id){
-        return storeRepository.getStoreWithSOId(id);
+    public Store getStoreByStoreOwnerId(Integer id) {
+        return storeRepository.getStoreByStoreOwnerId(id);
     }
 
-    public void createNewStore(Store store){storeRepository.save(store);}
+    public void createNewStore(Store store){
+      storeRepository.save(store);
+    }
 }

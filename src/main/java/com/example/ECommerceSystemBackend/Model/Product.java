@@ -1,8 +1,16 @@
 package com.example.ECommerceSystemBackend.Model;
 
 import com.example.ECommerceSystemBackend.Model.enums.ProductType;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-import javax.persistence.*;
+import com.example.ECommerceSystemBackend.Model.enums.ProductType;
 
 
 @Entity
@@ -21,21 +29,19 @@ public class Product {
     @Column(name = "DESCRIPTION")
     private String description;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "Shop_ID", referencedColumnName = "id")
     public Store store;
 
     public Product() {
     }
 
-    public Product(String name, Double price, ProductType type,Store store) {
+    public Product(String name, Double price, ProductType type, Store store) {
         this.name = name;
         this.price = price;
         this.type = type;
         this.store = store;
     }
-
-
 
     public Integer getQuantity() {
         return quantity;

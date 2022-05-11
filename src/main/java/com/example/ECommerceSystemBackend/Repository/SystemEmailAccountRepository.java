@@ -14,4 +14,5 @@ public interface SystemEmailAccountRepository extends JpaRepository<SystemEmailA
 
     @Query("select sea from SystemEmailAccount sea where sea.email = ?1")
     SystemEmailAccount getSystemEmailAccountByEmail(String email);
+
 }

@@ -18,45 +18,40 @@ public class ProductService {
         this.repository = productRepository;
     }
 
-    public Product addProduct(Product product) {
-        return repository.save(product);
-    }
+    public Product addProduct(Product product) {return repository.save(product);}
+
+    public Product getProductById(Integer id) {return repository.getProductById(id);}
 
     public List<Product> getProducts() {
         return repository.findAll();
     }
 
-    public List<Product> getProductByStoreID(Integer id) {
-        return repository.getProductByStoreID(id);
+    public List<Product> getProductByStoreId(Integer id) {
+        return repository.getProductByStoreId(id);
     }
 
-    public Product getProductByID(Integer id) {
-        return repository.getProductByID(id);
+    public List<Product> getProductInAscendingByPrice() {return repository.getProductInAscendingByPrice();}
+
+    public List<Product> getProductInDescendingByPrice() {return repository.getProductInDescendingByPrice();}
+
+    public List<Integer> getProductWithType(ProductType productType) {return repository.getProductWithType(productType);}
+
+    public List<Integer> getProductWithPrice(Double price) {
+        return repository.getProductWithPrice(price);
     }
 
-    public List<Product> getAscending() {
-        return repository.getProductInAscendingOrder();
+    public List<Integer> getProductLessThanPrice(Double price) {
+        return repository.getProductLessThanPrice(price);
     }
 
-    public List<Product> getDescending() {
-        return repository.getProductInDescendingOrder();
+    public List<Integer> getProductGreaterThanPrice(Double price) {return repository.getProductGreaterThanPrice(price);}
+
+    public List<Product> getProductWithName(String name) {
+        return repository.getProductWithName(name);
     }
 
-
-    public List<Integer> getProductWithType(ProductType productType){return repository.getProductWithType(productType);}
-
-    public List<Integer> getProductWithPrice(Double price){return repository.getProductWithPrice(price);}
-
-    public List<Integer> getProductLessThanPrice(Double price){return repository.getProductLessThanPrice(price);}
-
-    public List<Integer> getProductGreaterThanPrice(Double price){return repository.getProductGreaterThanPrice(price);}
-
-    public List<Product> getProductWithName(String name){return repository.getProductWithName(name);}
-
-    public void updateProductQuantity(Integer id,Integer quantity){repository.updateProductQuantity(id,quantity);}
-
-    public Product getProductById(Integer id) {
-        return repository.getProductByID(id);
+    public void updateProductQuantity(Integer id, Integer quantity) {
+        repository.updateProductQuantity(id, quantity);
     }
 
 }
