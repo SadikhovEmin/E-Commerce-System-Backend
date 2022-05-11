@@ -35,6 +35,11 @@ public class Comment {
         this.customer = customer;
     }
 
+    public void addComment(Customer customer, Product product) {
+        this.customer = customer;
+        this.product = product;
+    }
+
     public Integer getId() {
         return id;
     }
