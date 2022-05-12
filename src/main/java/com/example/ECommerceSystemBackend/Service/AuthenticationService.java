@@ -1,4 +1,5 @@
 package com.example.ECommerceSystemBackend.Service;
+
 import dev.samstevens.totp.code.*;
 import dev.samstevens.totp.exceptions.QrGenerationException;
 import dev.samstevens.totp.qr.QrData;
@@ -35,16 +36,16 @@ public class AuthenticationService {
         try {
             imageData = generator.generate(data);
         } catch (QrGenerationException e) {
-           System.out.println("unable to generate QrCode");
+            System.out.println("unable to generate QrCode");
         }
 
         String mimeType = generator.getImageMimeType();
         return getDataUriForImage(imageData, mimeType);
     }
 
-    public String getUriForImage(String secret,String email) {
+    public String getUriForImage(String secret, String label, String issuer) {
         QrData data = new QrData.Builder()
-                .label(email)
+                .label(label)
                 .secret(secret)
                 .issuer("E-Commerce")
                 .algorithm(HashingAlgorithm.SHA1)
@@ -58,7 +59,7 @@ public class AuthenticationService {
         try {
             imageData = generator.generate(data);
         } catch (QrGenerationException e) {
-           System.out.println("unable to generate QrCode");
+            System.out.println("unable to generate QrCode");
         }
 
         String mimeType = generator.getImageMimeType();
@@ -71,4 +72,5 @@ public class AuthenticationService {
         CodeVerifier verifier = new DefaultCodeVerifier(codeGenerator, timeProvider);
         return verifier.isValidCode(secret, code);
     }
+    
 }
