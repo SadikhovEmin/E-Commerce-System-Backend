@@ -27,6 +27,7 @@ public class Store {
     public List<Product> products = new ArrayList<>();
 
     @OneToMany(mappedBy = "store")
+    @JsonIgnore
     private List<CustomerOrder> customerOrders = new ArrayList<>();
 
 

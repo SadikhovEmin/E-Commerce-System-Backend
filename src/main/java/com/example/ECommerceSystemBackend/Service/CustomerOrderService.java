@@ -31,8 +31,9 @@ public class CustomerOrderService {
         Customer customer = customerRepository.findById(customerID).get();
         Store store = storeRepository.findById(storeID).get();
 
-        customer.addOrder(customerOrder);
+//        customer.addOrder(customerOrder);
         customerOrder.setStore(store);
+        customerOrder.setCustomer(customer);
         return orderRepository.save(customerOrder);
     }
 

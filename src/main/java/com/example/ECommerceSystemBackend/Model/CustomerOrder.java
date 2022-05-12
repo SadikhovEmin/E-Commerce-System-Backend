@@ -11,8 +11,8 @@ public class CustomerOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Transient
-    private Date date;
+
+    private String date;
 
     @ManyToOne
     @JoinColumn(name = "Customer_ID", referencedColumnName = "id")
@@ -28,11 +28,7 @@ public class CustomerOrder {
         return id;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

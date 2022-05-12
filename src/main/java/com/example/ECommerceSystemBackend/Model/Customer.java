@@ -1,5 +1,7 @@
 package com.example.ECommerceSystemBackend.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +29,7 @@ public class Customer {
     private Integer canLogin;
 
     @OneToMany(mappedBy = "customer")
+    @JsonIgnore
     private List<CustomerOrder> orders;
 
     public Customer() {}
