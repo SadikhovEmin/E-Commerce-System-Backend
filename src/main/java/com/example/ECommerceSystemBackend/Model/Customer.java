@@ -39,6 +39,8 @@ public class Customer {
         this.orders = new ArrayList<>();
     }
 
+    public void addOrder(CustomerOrder customerOrder) { this.orders.add(customerOrder); }
+
     public Integer getCanLogin() {
         return canLogin;
     }
