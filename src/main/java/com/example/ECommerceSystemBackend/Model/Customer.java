@@ -1,6 +1,7 @@
 package com.example.ECommerceSystemBackend.Model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -25,6 +26,9 @@ public class Customer {
     @Transient
     private Integer canLogin;
 
+    @OneToMany(mappedBy = "customer")
+    private List<CustomerOrder> orders;
+
     public Customer() {}
 
     public Customer(String name, String surname, String email, String password) {
@@ -32,6 +36,7 @@ public class Customer {
         this.surname = surname;
         this.email = email;
         this.password = password;
+        this.orders = new ArrayList<>();
     }
 
     public Integer getCanLogin() {
@@ -92,6 +97,14 @@ public class Customer {
 
     public String getSecret() {
         return secret;
+    }
+
+    public List<CustomerOrder> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<CustomerOrder> orders) {
+        this.orders = orders;
     }
 
     public void setSecret(String secret) {

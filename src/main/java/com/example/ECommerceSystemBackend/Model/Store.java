@@ -1,6 +1,7 @@
 package com.example.ECommerceSystemBackend.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.criterion.Order;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -25,6 +26,9 @@ public class Store {
             mappedBy = "store"
     )
     public List<Product> products = new ArrayList<>();
+
+    @OneToMany(mappedBy = "store")
+    private List<CustomerOrder> customerOrders = new ArrayList<>();
 
 
     public Store() {
@@ -65,5 +69,13 @@ public class Store {
 
     public void setProducts(List<Product> products) {
         this.products = products;
+    }
+
+    public List<CustomerOrder> getCustomerOrders() {
+        return customerOrders;
+    }
+
+    public void setCustomerOrders(List<CustomerOrder> customerOrders) {
+        this.customerOrders = customerOrders;
     }
 }
