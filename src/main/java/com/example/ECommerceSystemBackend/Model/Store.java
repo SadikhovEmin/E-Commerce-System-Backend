@@ -1,7 +1,6 @@
 package com.example.ECommerceSystemBackend.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.criterion.Order;
 
 import javax.persistence.*;
 import java.util.ArrayList;
