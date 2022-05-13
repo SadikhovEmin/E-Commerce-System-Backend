@@ -7,9 +7,11 @@ import com.example.ECommerceSystemBackend.Model.Product;
 import com.example.ECommerceSystemBackend.Repository.CommentRepository;
 import com.example.ECommerceSystemBackend.Repository.CustomerRepository;
 import com.example.ECommerceSystemBackend.Repository.ProductRepository;
+import jnr.ffi.annotations.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.nio.DoubleBuffer;
 import java.util.List;
 
 @Service
@@ -30,8 +32,20 @@ public class CommentService {
         Comment comment = new Comment(commentDTO.comment);
         Customer customer = customerRepository.getCustomerById(commentDTO.customerId);
         Product product = productRepository.getProductById(commentDTO.productId);
+        Integer productCount;
+
+        if (commentRepository.getProductReviewCountById(product.getId()) == 0) {
+            productCount = 1;
+        }
+        else{
+            productCount = commentRepository.getProductReviewCountById(product.getId());
+            productCount++;
+        }
+
+        System.out.println("productCount = " + productCount);
 
         comment.addComment(customer, product);
+        product.setReview((product.getReview() + commentDTO.review) / productCount.doubleValue());
         return commentRepository.save(comment);
     }
 

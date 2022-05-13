@@ -45,4 +45,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Transactional
     void updateProductQuantity(Integer id, Integer quantity);
 
+    @Query("select count(p.id) from Product p")
+    Integer getCount();
+
 }

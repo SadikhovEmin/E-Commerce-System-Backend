@@ -6,6 +6,7 @@ public class CommentDTO {
     public String comment;
     public Integer customerId;
     public Integer productId;
+    public Double review;
 
     public String getComment() {
         return comment;
@@ -31,12 +32,21 @@ public class CommentDTO {
         this.productId = productId;
     }
 
+    public Double getReview() {
+        return review;
+    }
+
+    public void setReview(Double review) {
+        this.review = review;
+    }
+
     @Override
     public String toString() {
         return "CommentDTO{" +
                 "comment='" + comment + '\'' +
                 ", customerId=" + customerId +
                 ", productId=" + productId +
+                ", review=" + review +
                 '}';
     }
 }

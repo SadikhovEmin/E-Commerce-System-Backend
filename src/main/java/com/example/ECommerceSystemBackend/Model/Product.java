@@ -4,8 +4,6 @@ import com.example.ECommerceSystemBackend.Model.enums.ProductType;
 
 import javax.persistence.*;
 
-import com.example.ECommerceSystemBackend.Model.enums.ProductType;
-
 import java.util.List;
 
 
@@ -24,6 +22,8 @@ public class Product {
     private ProductType type;
     @Column(name = "DESCRIPTION")
     private String description;
+    @Column(name = "REVIEW")
+    private Double review;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "Shop_ID", referencedColumnName = "id")
@@ -96,5 +96,22 @@ public class Product {
 
     public void setStore(Store store) {
         this.store = store;
+    }
+
+    public Double getReview() {
+        return review;
+    }
+
+    public void setReview(Double review) {
+        this.review = review;
+
+    }
+
+    public List<Comment> getCommentList() {
+        return commentList;
+    }
+
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
     }
 }

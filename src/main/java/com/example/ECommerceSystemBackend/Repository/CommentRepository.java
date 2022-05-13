@@ -12,4 +12,7 @@ public interface CommentRepository extends JpaRepository<Comment, Integer> {
 
     @Query("select max(c.id)  from Comment c")
     Integer getMaxId();
+
+    @Query("select count(c) from Comment c where c.product.id = ?1")
+    Integer getProductReviewCountById(Integer id);
 }
