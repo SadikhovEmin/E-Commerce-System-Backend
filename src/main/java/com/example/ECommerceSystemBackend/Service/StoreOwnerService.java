@@ -26,6 +26,10 @@ public class StoreOwnerService {
         return storeOwnerRepository.getStoreOwnerByEmail(email);
     }
 
+    public String getWalletAddressOfStoreOwner(Integer id) {
+        return storeOwnerRepository.getWalletAddressOfStoreOwner(id);
+    }
+
     public void updateStoreOwnerMfa(StoreOwner storeOwner, boolean mfa) {
         storeOwnerRepository.updateStoreOwnerMfaById(storeOwner.getId(), mfa);
     }

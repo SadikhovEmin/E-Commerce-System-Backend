@@ -18,6 +18,9 @@ public interface StoreOwnerRepository extends JpaRepository<StoreOwner, Integer>
     @Query("select s.password from StoreOwner s where s.id = ?1")
     String getStoreOwnerOldPasword(int id);
 
+    @Query("select s.walletAddress from StoreOwner s where s.id = ?1")
+    String getWalletAddressOfStoreOwner(int id);
+
     @Modifying
     @Query("update StoreOwner set password = ?2 where id = ?1 ")
     @Transactional
