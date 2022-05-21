@@ -45,4 +45,14 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Transactional
     void updateProductQuantity(Integer id, Integer quantity);
 
+    @Modifying
+    @Query("update Product set name = ?2 , price = ?3 , quantity = ?4 , type = ?5 , description = ?6  where id = ?1 ")
+    @Transactional
+    void updateProduct(Integer id,String name,Double price,Integer quantity,ProductType type,String description);
+
+    @Modifying
+    @Query("update Product set price = price - (price*?2)/100 where store.id = ?1 ")
+    @Transactional
+    void applyDiscountToPriceWithStoreId(Integer storeId, Double discount);
+
 }

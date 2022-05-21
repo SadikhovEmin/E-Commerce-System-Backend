@@ -13,28 +13,59 @@ public class ProductService {
 
     private final ProductRepository repository;
 
+
     @Autowired
     public ProductService(ProductRepository productRepository) {
         this.repository = productRepository;
     }
 
-    public Product addProduct(Product product) {return repository.save(product);}
+    public void addProduct(Product product) {repository.save(product);}
 
-    public Product getProductById(Integer id) {return repository.getProductById(id);}
+    public Product getProductById(Integer id) {
+        Product product = repository.getProductById(id);
+        product.setPriceWithDiscount();
+        return product;
+    }
 
     public List<Product> getProducts() {
-        return repository.findAll();
+        List<Product> productList = repository.findAll();
+
+        for (Product product : productList) {
+            product.setPriceWithDiscount();
+        }
+        return productList;
     }
 
     public List<Product> getProductByStoreId(Integer id) {
-        return repository.getProductByStoreId(id);
+        List<Product> productList = repository.getProductByStoreId(id);
+
+        for (Product product : productList) {
+            product.setPriceWithDiscount();
+        }
+        return productList;
     }
 
-    public List<Product> getProductInAscendingByPrice() {return repository.getProductInAscendingByPrice();}
+    public List<Product> getProductInAscendingByPrice() {
+        List<Product> productList = repository.getProductInAscendingByPrice();
 
-    public List<Product> getProductInDescendingByPrice() {return repository.getProductInDescendingByPrice();}
+        for (Product product : productList) {
+            product.setPriceWithDiscount();
+        }
+        return productList;
+    }
 
-    public List<Integer> getProductWithType(ProductType productType) {return repository.getProductWithType(productType);}
+    public List<Product> getProductInDescendingByPrice() {
+        List<Product> productList = repository.getProductInDescendingByPrice();
+
+        for (Product product : productList) {
+            product.setPriceWithDiscount();
+        }
+        return productList;
+    }
+
+    public List<Integer> getProductWithType(ProductType productType) {
+        return repository.getProductWithType(productType);
+    }
 
     public List<Integer> getProductWithPrice(Double price) {
         return repository.getProductWithPrice(price);
@@ -54,4 +85,7 @@ public class ProductService {
         repository.updateProductQuantity(id, quantity);
     }
 
+    public void updateProduct(Product product) {
+        repository.updateProduct(product.getId(), product.getName(), product.getPrice(), product.getQuantity(), product.getType(), product.getDescription());
+    }
 }

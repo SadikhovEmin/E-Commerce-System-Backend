@@ -13,6 +13,9 @@ public class Store {
     private Integer id;
     @Column(name = "Name")
     public String name;
+    @Column(name = "Discount")
+    public Integer discountPercentage;
+
     @OneToOne(cascade = CascadeType.ALL)
     public StoreOwner storeOwner = new StoreOwner();
     @JsonIgnore
