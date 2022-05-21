@@ -16,8 +16,6 @@ public class Store {
     @Column(name = "Discount")
     public Integer discountPercentage;
 
-    @OneToOne(cascade = CascadeType.ALL)
-
     @OneToOne(
             cascade = CascadeType.ALL
     )
