@@ -8,6 +8,7 @@ import org.web3j.abi.datatypes.Int;
 
 @RestController
 @RequestMapping(path = "/customerOrder")
+@CrossOrigin
 public class CustomerOrderController {
 
     private final CustomerOrderService orderService;
@@ -30,13 +31,11 @@ public class CustomerOrderController {
         return orderService.createOrder(orderId, customerId, storeId);
     }
 
-    @PutMapping(path = "/{orderId}/status/{status}")
+    @PutMapping(path = "/updateStatus/{orderId}/status/{status}")
     public void updateOrderStatus(
-            @PathVariable("status") String status,
-            @PathVariable("orderId") String orderId
+            @PathVariable String status,
+            @PathVariable Integer orderId
     ) {
-        System.out.println("status = " + status);
-        System.out.println("orderId = " + orderId);
-        orderService.updateOrderStatus(status , Integer.parseInt(orderId));
+        orderService.updateOrderStatus(status , orderId);
     }
 }
