@@ -58,4 +58,13 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Transactional
     void applyDiscountToPriceWithStoreId(Integer storeId, Double discount);
 
+    @Modifying
+    @Transactional
+    @Query("update Product p set p.suspended =true where p.id =?1")
+    void suspendProduct(Integer id);
+
+    @Modifying
+    @Transactional
+    @Query("update Product p set p.suspended =false where p.id =?1")
+    void unsuspendProduct(Integer id);
 }

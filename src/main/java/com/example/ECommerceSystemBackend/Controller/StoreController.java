@@ -33,6 +33,16 @@ public class StoreController {
     @PutMapping("/discount")
     public void updateDiscountPercentage(@RequestBody StoreDiscountDTO storeDiscountDTO){storeService.updateDiscountPercentage(storeDiscountDTO);}
 
+    @PutMapping(path = "/{id}/suspend")
+    public void suspendStore(@PathVariable Integer id) {
+        storeService.suspendStore(id);
+    }
+
+    @PutMapping(path = "/{id}/unsuspend")
+    public void unsuspendStore(@PathVariable Integer id) {
+        storeService.unsuspendProduct(id);
+    }
+
     @PutMapping("/confirmation")
     public void updateDiscountPercentage(@RequestBody StoreConfirmDTO storeConfirmDTO){storeService.updateStoreConfirmationType(storeConfirmDTO);}
 

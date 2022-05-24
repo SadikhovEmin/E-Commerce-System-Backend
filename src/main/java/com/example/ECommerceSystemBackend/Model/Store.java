@@ -20,6 +20,9 @@ public class Store {
     @Column(name = "Discount")
     public Integer discountPercentage;
 
+    @Column(name = "SUSPENDED")
+    private Boolean suspended;
+
     @OneToOne(
             cascade = CascadeType.ALL
     )
@@ -83,5 +86,21 @@ public class Store {
 
     public void setCustomerOrders(List<CustomerOrder> customerOrders) {
         this.customerOrders = customerOrders;
+    }
+
+    public Integer getDiscountPercentage() {
+        return discountPercentage;
+    }
+
+    public void setDiscountPercentage(Integer discountPercentage) {
+        this.discountPercentage = discountPercentage;
+    }
+
+    public Boolean getSuspended() {
+        return suspended;
+    }
+
+    public void setSuspended(Boolean suspended) {
+        this.suspended = suspended;
     }
 }

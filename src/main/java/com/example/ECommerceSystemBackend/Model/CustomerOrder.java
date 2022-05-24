@@ -22,8 +22,9 @@ public class CustomerOrder {
     @JoinColumn(name = "Store_ID", referencedColumnName = "id")
     private Store store;        // Assigned Store -> Foreign key
     private Double price;
-    @Enumerated(EnumType.STRING)
-    private Status status;
+//    @Enumerated(EnumType.STRING)
+//    private Status status;
+    private String status;
 
     public Integer getId() {
         return id;
@@ -57,11 +58,15 @@ public class CustomerOrder {
         this.price = price;
     }
 
-    public Status getStatus() {
+    public String getDate() {
+        return date;
+    }
+
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 }

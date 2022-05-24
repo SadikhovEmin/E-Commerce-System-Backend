@@ -88,4 +88,12 @@ public class ProductService {
     public void updateProduct(Product product) {
         repository.updateProduct(product.getId(), product.getName(), product.getPrice(), product.getQuantity(), product.getType(), product.getDescription());
     }
+
+    public void suspendProduct(Integer id) {
+        repository.suspendProduct(id);
+    }
+
+    public void unsuspendProduct(Integer id) {
+        repository.unsuspendProduct(id);
+    }
 }
