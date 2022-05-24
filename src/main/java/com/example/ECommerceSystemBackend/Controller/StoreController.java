@@ -1,5 +1,6 @@
 package com.example.ECommerceSystemBackend.Controller;
 
+import com.example.ECommerceSystemBackend.Model.DTO.StoreConfirmDTO;
 import com.example.ECommerceSystemBackend.Model.DTO.StoreDiscountDTO;
 import com.example.ECommerceSystemBackend.Model.Store;
 import com.example.ECommerceSystemBackend.Service.ProductService;
@@ -7,6 +8,8 @@ import com.example.ECommerceSystemBackend.Service.StoreService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequestMapping("/store")
 @RestController
@@ -24,7 +27,13 @@ public class StoreController {
     @GetMapping("/product/{productId}")
     public Store getStoreByProductId(@PathVariable String productId) {return productService.getProductById(Integer.parseInt(productId)).getStore();}
 
+    @GetMapping("/pending")
+    public List<Store> getPendingStores() {return storeService.getPendingStoreCreations();}
+
     @PutMapping("/discount")
     public void updateDiscountPercentage(@RequestBody StoreDiscountDTO storeDiscountDTO){storeService.updateDiscountPercentage(storeDiscountDTO);}
+
+    @PutMapping("/confirmation")
+    public void updateDiscountPercentage(@RequestBody StoreConfirmDTO storeConfirmDTO){storeService.updateStoreConfirmationType(storeConfirmDTO);}
 
 }
