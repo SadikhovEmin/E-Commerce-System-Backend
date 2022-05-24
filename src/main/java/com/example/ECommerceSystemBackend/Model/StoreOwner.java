@@ -1,11 +1,6 @@
 package com.example.ECommerceSystemBackend.Model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 @Entity
 public class StoreOwner {
@@ -20,6 +15,11 @@ public class StoreOwner {
     private String email;
     @Column(name = "PASSWORD")
     private String password;
+
+    @Lob
+    @Column(name = "IMAGE")
+    private byte[] image;
+
     @Column(name = "MFA")
     private boolean mfa = false;
     @Column(name = "SECRET")

@@ -14,6 +14,12 @@ public class Store {
     @Column(name = "Name")
     public String name;
 
+    @Column
+    public String storeConfirmationType;
+
+    @Column(name = "Discount")
+    public Integer discountPercentage;
+
     @OneToOne(
             cascade = CascadeType.ALL
     )

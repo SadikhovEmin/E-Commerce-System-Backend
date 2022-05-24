@@ -3,6 +3,7 @@ package com.example.ECommerceSystemBackend.Service;
 import com.example.ECommerceSystemBackend.Model.Customer;
 import com.example.ECommerceSystemBackend.Model.CustomerOrder;
 import com.example.ECommerceSystemBackend.Model.Store;
+import com.example.ECommerceSystemBackend.Model.enums.Status;
 import com.example.ECommerceSystemBackend.Repository.CustomerOrderRepository;
 import com.example.ECommerceSystemBackend.Repository.CustomerRepository;
 import com.example.ECommerceSystemBackend.Repository.StoreRepository;
@@ -37,7 +38,14 @@ public class CustomerOrderService {
         return orderRepository.save(customerOrder);
     }
 
+    public void updateOrderStatus(String status, Integer orderID) {
+        orderRepository.updateOrderStatus(status, orderID);
+    }
+
     public CustomerOrder save(CustomerOrder order) {
         return orderRepository.save(order);
     }
+
+    public void cancelCustomerOrder(Integer orderId){orderRepository.deleteById(orderId);}
+
 }

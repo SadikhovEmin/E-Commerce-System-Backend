@@ -22,6 +22,7 @@ public class CustomerOrder {
     @JoinColumn(name = "Store_ID", referencedColumnName = "id")
     private Store store;        // Assigned Store -> Foreign key
     private Double price;
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     public Integer getId() {

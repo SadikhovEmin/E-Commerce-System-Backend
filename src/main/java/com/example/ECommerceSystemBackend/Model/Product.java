@@ -82,6 +82,10 @@ public class Product {
         this.price = price;
     }
 
+    public void setPriceWithDiscount(){
+        this.price = this.price- ((this.price* this.store.discountPercentage)/100);
+    }
+
     public ProductType getType() {
         return type;
     }
