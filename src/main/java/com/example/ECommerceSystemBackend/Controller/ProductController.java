@@ -73,4 +73,14 @@ public class ProductController {
     public void updateProduct(@RequestBody Product product) {productService.updateProduct(product);}
 
 
+    @PutMapping(path = "/{id}/suspend")
+    public void suspendProduct(@PathVariable Integer id) {
+        productService.suspendProduct(id);
+    }
+
+    @PutMapping(path = "/{id}/unsuspend")
+    public void unsuspendProduct(@PathVariable Integer id) {
+        productService.unsuspendProduct(id);
+    }
+
 }

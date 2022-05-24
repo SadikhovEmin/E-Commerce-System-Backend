@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.example.ECommerceSystemBackend.Model.enums.ProductType;
-
 
 @Entity
 public class Product {
@@ -28,6 +26,9 @@ public class Product {
     private ProductType type;
     @Column(name = "DESCRIPTION")
     private String description;
+
+    @Column(name = "SUSPENDED")
+    private Boolean suspended;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "Shop_ID", referencedColumnName = "id")
@@ -101,5 +102,13 @@ public class Product {
 
     public void setStore(Store store) {
         this.store = store;
+    }
+
+    public Boolean getSuspended() {
+        return suspended;
+    }
+
+    public void setSuspended(Boolean suspended) {
+        this.suspended = suspended;
     }
 }
