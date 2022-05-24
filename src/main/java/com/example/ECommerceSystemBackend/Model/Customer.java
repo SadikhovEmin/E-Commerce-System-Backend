@@ -32,6 +32,9 @@ public class Customer {
     @JsonIgnore
     private List<CustomerOrder> orders;
 
+    @OneToMany(mappedBy = "customer")
+    private List<Comment> comments;
+
     public Customer() {}
 
     public Customer(String name, String surname, String email, String password) {
@@ -40,6 +43,10 @@ public class Customer {
         this.email = email;
         this.password = password;
         this.orders = new ArrayList<>();
+    }
+
+    public List<Comment> getComments() {
+        return comments;
     }
 
     public void addOrder(CustomerOrder customerOrder) { this.orders.add(customerOrder); }
@@ -54,6 +61,10 @@ public class Customer {
 
     public Integer getId() {
         return id;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 
     public void setId(Integer id) {

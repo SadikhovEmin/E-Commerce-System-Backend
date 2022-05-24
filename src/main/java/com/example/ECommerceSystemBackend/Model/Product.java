@@ -1,16 +1,10 @@
 package com.example.ECommerceSystemBackend.Model;
 
 import com.example.ECommerceSystemBackend.Model.enums.ProductType;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
-import com.example.ECommerceSystemBackend.Model.enums.ProductType;
+import javax.persistence.*;
+
+import java.util.List;
 
 
 @Entity
@@ -28,10 +22,15 @@ public class Product {
     private ProductType type;
     @Column(name = "DESCRIPTION")
     private String description;
+    @Column(name = "REVIEW")
+    private Double review;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "Shop_ID", referencedColumnName = "id")
     public Store store;
+
+    @OneToMany(mappedBy = "product")
+    public List<Comment> commentList;
 
     public Product() {
     }
@@ -101,5 +100,22 @@ public class Product {
 
     public void setStore(Store store) {
         this.store = store;
+    }
+
+    public Double getReview() {
+        return review;
+    }
+
+    public void setReview(Double review) {
+        this.review = review;
+
+    }
+
+    public List<Comment> getCommentList() {
+        return commentList;
+    }
+
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
     }
 }
