@@ -30,6 +30,7 @@ public class CustomerOrderController {
         return orderService.createOrder(orderId, customerId, storeId);
     }
 
+
     @PutMapping(path = "/{orderId}/status/{status}")
     public void updateOrderStatus(
             @PathVariable("status") String status,
@@ -39,4 +40,11 @@ public class CustomerOrderController {
         System.out.println("orderId = " + orderId);
         orderService.updateOrderStatus(status , Integer.parseInt(orderId));
     }
+
+    @DeleteMapping("/{orderId}")
+    public void deleteOrderById(@PathVariable Integer orderId){
+        orderService.cancelCustomerOrder(orderId);
+    }
+
+
 }
