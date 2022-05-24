@@ -23,4 +23,13 @@ public interface StoreRepository extends JpaRepository<Store, Integer> {
     @Transactional
     void updateDiscountPercentage(Integer storeId, Integer discountPercentage);
 
+    @Modifying
+    @Transactional
+    @Query("update Store s set s.suspended=true where s.id =?1")
+    void suspendStore(Integer id);
+
+    @Modifying
+    @Transactional
+    @Query("update Store s set s.suspended=false where s.id =?1")
+    void unsuspendStore(Integer id);
 }

@@ -27,4 +27,12 @@ public class StoreService {
     public void updateDiscountPercentage(StoreDiscountDTO storeDiscountDTO){
         storeRepository.updateDiscountPercentage(storeDiscountDTO.getStoreId(),storeDiscountDTO.getDiscountPercentage());
     }
+
+    public void suspendStore(Integer id) {
+        storeRepository.suspendStore(id);
+    }
+
+    public void unsuspendProduct(Integer id) {
+        storeRepository.unsuspendStore(id);
+    }
 }
