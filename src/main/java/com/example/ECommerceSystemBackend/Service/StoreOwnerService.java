@@ -48,6 +48,7 @@ public class StoreOwnerService {
 
     public void createNewStore(StoreOwnerStoreDTO storeOwnerStoreDTO) {
         Store store = new Store(storeOwnerStoreDTO.getStoreName());
+        store.storeConfirmationType = "PENDING";
         StoreOwner storeOwner = storeOwnerRepository.getStoreOwnerById(storeOwnerStoreDTO.getStoreOwnerID());
         store.setStoreOwner(storeOwner);
         storeRepository.save(store);

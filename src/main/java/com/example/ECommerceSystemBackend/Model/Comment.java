@@ -6,19 +6,19 @@ import javax.persistence.*;
 @Entity
 public class Comment {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(name = "CONTENT")
     private String content;
 
-    @OneToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(
             name = "Product_ID",
             referencedColumnName = "id"
     )
     private Product product;
 
-    @OneToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(
             name = "Customer_ID",
             referencedColumnName = "id"
@@ -27,6 +27,10 @@ public class Comment {
 
     public Comment() {
 
+    }
+
+    public Comment(String content) {
+        this.content = content;
     }
 
     public Comment(String content, Product product, Customer customer) {
@@ -39,6 +43,8 @@ public class Comment {
         this.customer = customer;
         this.product = product;
     }
+
+
 
     public Integer getId() {
         return id;

@@ -7,12 +7,21 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Repository
 public interface StoreRepository extends JpaRepository<Store, Integer> {
     
     @Query("select s from Store s where s.storeOwner.id = ?1")
     Store getStoreByStoreOwnerId(Integer id);
+
+    @Query("select s from Store s where s.storeConfirmationType = ?1")
+    List<Store> getPendingStores(String confirmationType);
+
+    @Modifying
+    @Query("update Store set storeConfirmationType = ?2 where id = ?1")
+    @Transactional
+    void updateStoreConfirmationType(Integer storeId, String storeConfirmationType);
     @Modifying
     @Query("update Store set name = ?2  where storeOwner.id = ?1 ")
     @Transactional

@@ -1,14 +1,9 @@
 package com.example.ECommerceSystemBackend.Model;
 
 import com.example.ECommerceSystemBackend.Model.enums.ProductType;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.List;
+
 
 
 @Entity
@@ -26,6 +21,8 @@ public class Product {
     private ProductType type;
     @Column(name = "DESCRIPTION")
     private String description;
+    @Column(name = "REVIEW")
+    private Double review;
 
     @Column(name = "SUSPENDED")
     private Boolean suspended;
@@ -33,6 +30,9 @@ public class Product {
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "Shop_ID", referencedColumnName = "id")
     public Store store;
+
+    @OneToMany(mappedBy = "product")
+    public List<Comment> commentList;
 
     public Product() {
     }
@@ -104,11 +104,29 @@ public class Product {
         this.store = store;
     }
 
+
     public Boolean getSuspended() {
         return suspended;
     }
 
     public void setSuspended(Boolean suspended) {
         this.suspended = suspended;
+
+    public Double getReview() {
+        return review;
+    }
+
+    public void setReview(Double review) {
+        this.review = review;
+
+    }
+
+    public List<Comment> getCommentList() {
+        return commentList;
+    }
+
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
+
     }
 }

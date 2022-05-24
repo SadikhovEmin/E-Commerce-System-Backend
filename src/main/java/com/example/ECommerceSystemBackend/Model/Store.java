@@ -13,6 +13,10 @@ public class Store {
     private Integer id;
     @Column(name = "Name")
     public String name;
+
+    @Column
+    public String storeConfirmationType;
+
     @Column(name = "Discount")
     public Integer discountPercentage;
 

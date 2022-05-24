@@ -1,11 +1,14 @@
 package com.example.ECommerceSystemBackend.Service;
 
+import com.example.ECommerceSystemBackend.Model.DTO.StoreConfirmDTO;
 import com.example.ECommerceSystemBackend.Model.DTO.StoreDiscountDTO;
 import com.example.ECommerceSystemBackend.Model.Store;
 import com.example.ECommerceSystemBackend.Repository.ProductRepository;
 import com.example.ECommerceSystemBackend.Repository.StoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class StoreService {
@@ -28,11 +31,20 @@ public class StoreService {
         storeRepository.updateDiscountPercentage(storeDiscountDTO.getStoreId(),storeDiscountDTO.getDiscountPercentage());
     }
 
+
     public void suspendStore(Integer id) {
         storeRepository.suspendStore(id);
     }
 
     public void unsuspendProduct(Integer id) {
         storeRepository.unsuspendStore(id);
+    }
+
+    public List<Store> getPendingStoreCreations(){
+        return storeRepository.getPendingStores("PENDING");
+    }
+
+    public void updateStoreConfirmationType(StoreConfirmDTO storeConfirmDTO){
+        storeRepository.updateStoreConfirmationType(storeConfirmDTO.getStoreId(),storeConfirmDTO.getStoreConfirmationType());
     }
 }
