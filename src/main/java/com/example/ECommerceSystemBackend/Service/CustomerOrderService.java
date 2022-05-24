@@ -40,4 +40,7 @@ public class CustomerOrderService {
     public CustomerOrder save(CustomerOrder order) {
         return orderRepository.save(order);
     }
+
+    public void cancelCustomerOrder(Integer orderId){orderRepository.deleteById(orderId);}
+
 }

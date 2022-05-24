@@ -28,4 +28,10 @@ public class CustomerOrderController {
     ) {
         return orderService.createOrder(orderId, customerId, storeId);
     }
+
+    @DeleteMapping("/{orderId}")
+    public void deleteOrderById(@PathVariable Integer orderId){
+        orderService.cancelCustomerOrder(orderId);
+    }
+
 }
