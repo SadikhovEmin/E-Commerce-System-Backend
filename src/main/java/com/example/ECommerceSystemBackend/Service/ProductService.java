@@ -2,6 +2,7 @@ package com.example.ECommerceSystemBackend.Service;
 
 import com.example.ECommerceSystemBackend.Model.Product;
 import com.example.ECommerceSystemBackend.Model.enums.ProductType;
+import com.example.ECommerceSystemBackend.Model.enums.ConfirmationType;
 import com.example.ECommerceSystemBackend.Repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,9 @@ public class ProductService {
         this.repository = productRepository;
     }
 
-    public void addProduct(Product product) {repository.save(product);}
+    public void addProduct(Product product) {
+        repository.save(product);
+    }
 
     public Product getProductById(Integer id) {
         Product product = repository.getProductById(id);
@@ -89,11 +92,12 @@ public class ProductService {
         repository.updateProduct(product.getId(), product.getName(), product.getPrice(), product.getQuantity(), product.getType(), product.getDescription());
     }
 
-    public void suspendProduct(Integer id) {
-        repository.suspendProduct(id);
+    public void suspendProduct(Integer id, ConfirmationType confirmationType) {
+        repository.suspendProduct(id, confirmationType);
     }
 
-    public void unsuspendProduct(Integer id) {
-        repository.unsuspendProduct(id);
+    public List<Product> getProductBySuspended(ConfirmationType confirmationType){
+        return repository.getProductsBySuspended(confirmationType);
     }
+
 }

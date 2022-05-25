@@ -1,6 +1,8 @@
 package com.example.ECommerceSystemBackend.Model;
 
 import com.example.ECommerceSystemBackend.Model.enums.ProductType;
+import com.example.ECommerceSystemBackend.Model.enums.ConfirmationType;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -25,7 +27,7 @@ public class Product {
     private Double review;
 
     @Column(name = "SUSPENDED")
-    private Boolean suspended;
+    private ConfirmationType suspended;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "Shop_ID", referencedColumnName = "id")
@@ -42,6 +44,14 @@ public class Product {
         this.price = price;
         this.type = type;
         this.store = store;
+    }
+
+    public ConfirmationType getSuspended() {
+        return suspended;
+    }
+
+    public void setSuspended(ConfirmationType suspended) {
+        this.suspended = suspended;
     }
 
     public Integer getQuantity() {
@@ -103,14 +113,6 @@ public class Product {
     public void setStore(Store store) {
         this.store = store;
     }
-
-
-    public Boolean getSuspended() {
-        return suspended;
-    }
-
-    public void setSuspended(Boolean suspended) {
-        this.suspended = suspended;
 
     public Double getReview() {
         return review;

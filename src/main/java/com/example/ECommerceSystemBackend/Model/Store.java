@@ -1,5 +1,6 @@
 package com.example.ECommerceSystemBackend.Model;
 
+import com.example.ECommerceSystemBackend.Model.enums.ConfirmationType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -15,7 +16,7 @@ public class Store {
     public String name;
 
     @Column
-    public String storeConfirmationType;
+    public ConfirmationType storeConfirmationType;
 
     @Column(name = "Discount")
     public Integer discountPercentage;

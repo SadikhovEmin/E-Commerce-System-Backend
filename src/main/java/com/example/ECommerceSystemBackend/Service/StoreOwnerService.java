@@ -5,6 +5,7 @@ import com.example.ECommerceSystemBackend.Model.DTO.PasswordDTO;
 import com.example.ECommerceSystemBackend.Model.DTO.StoreOwnerInfoDTO;
 import com.example.ECommerceSystemBackend.Model.DTO.StoreOwnerStoreDTO;
 import com.example.ECommerceSystemBackend.Model.Store;
+import com.example.ECommerceSystemBackend.Model.enums.ConfirmationType;
 import com.example.ECommerceSystemBackend.Repository.StoreOwnerRepository;
 import com.example.ECommerceSystemBackend.Repository.StoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +49,9 @@ public class StoreOwnerService {
 
     public void createNewStore(StoreOwnerStoreDTO storeOwnerStoreDTO) {
         Store store = new Store(storeOwnerStoreDTO.getStoreName());
-        store.storeConfirmationType = "PENDING";
+        store.storeConfirmationType = ConfirmationType.WAITING;
+        store.setSuspended(false);
+        store.discountPercentage = 0;
         StoreOwner storeOwner = storeOwnerRepository.getStoreOwnerById(storeOwnerStoreDTO.getStoreOwnerID());
         store.setStoreOwner(storeOwner);
         storeRepository.save(store);

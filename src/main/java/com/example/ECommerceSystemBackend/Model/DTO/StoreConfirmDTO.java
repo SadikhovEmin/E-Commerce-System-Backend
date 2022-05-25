@@ -1,11 +1,13 @@
 package com.example.ECommerceSystemBackend.Model.DTO;
 
+import com.example.ECommerceSystemBackend.Model.enums.ConfirmationType;
+
 public class StoreConfirmDTO {
 
     public Integer storeId;
-    public String storeConfirmationType;
+    public ConfirmationType storeConfirmationType;
 
-    public StoreConfirmDTO(Integer storeId, String storeConfirmationType) {
+    public StoreConfirmDTO(Integer storeId, ConfirmationType storeConfirmationType) {
         this.storeId = storeId;
         this.storeConfirmationType = storeConfirmationType;
     }
@@ -18,11 +20,11 @@ public class StoreConfirmDTO {
         this.storeId = storeId;
     }
 
-    public String getStoreConfirmationType() {
+    public ConfirmationType getStoreConfirmationType() {
         return storeConfirmationType;
     }
 
-    public void setStoreConfirmationType(String storeConfirmationType) {
+    public void setStoreConfirmationType(ConfirmationType storeConfirmationType) {
         this.storeConfirmationType = storeConfirmationType;
     }
 }

@@ -2,6 +2,7 @@ package com.example.ECommerceSystemBackend.Repository;
 
 import com.example.ECommerceSystemBackend.Model.Product;
 import com.example.ECommerceSystemBackend.Model.enums.ProductType;
+import com.example.ECommerceSystemBackend.Model.enums.ConfirmationType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -58,13 +59,11 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Transactional
     void applyDiscountToPriceWithStoreId(Integer storeId, Double discount);
 
-    @Modifying
-    @Transactional
-    @Query("update Product p set p.suspended =true where p.id =?1")
-    void suspendProduct(Integer id);
+    @Query("select p from Product p where p.suspended = ?1")
+    List<Product> getProductsBySuspended(ConfirmationType suspended);
 
     @Modifying
     @Transactional
-    @Query("update Product p set p.suspended =false where p.id =?1")
-    void unsuspendProduct(Integer id);
+    @Query("update Product p set p.suspended =?2 where p.id =?1")
+    void suspendProduct(Integer id, ConfirmationType confirmationType);
 }

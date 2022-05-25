@@ -3,6 +3,7 @@ package com.example.ECommerceSystemBackend.Service;
 import com.example.ECommerceSystemBackend.Model.DTO.StoreConfirmDTO;
 import com.example.ECommerceSystemBackend.Model.DTO.StoreDiscountDTO;
 import com.example.ECommerceSystemBackend.Model.Store;
+import com.example.ECommerceSystemBackend.Model.enums.ConfirmationType;
 import com.example.ECommerceSystemBackend.Repository.ProductRepository;
 import com.example.ECommerceSystemBackend.Repository.StoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,10 +42,14 @@ public class StoreService {
     }
 
     public List<Store> getPendingStoreCreations(){
-        return storeRepository.getPendingStores("PENDING");
+        return storeRepository.getPendingStores(ConfirmationType.WAITING);
     }
 
     public void updateStoreConfirmationType(StoreConfirmDTO storeConfirmDTO){
         storeRepository.updateStoreConfirmationType(storeConfirmDTO.getStoreId(),storeConfirmDTO.getStoreConfirmationType());
+    }
+
+    public List<Store> getStores() {
+        return storeRepository.getStores();
     }
 }

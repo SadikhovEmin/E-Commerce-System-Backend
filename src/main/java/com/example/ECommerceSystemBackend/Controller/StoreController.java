@@ -21,6 +21,9 @@ public class StoreController {
     @Autowired
     private ProductService productService;
 
+    @GetMapping()
+    public List<Store> getStores() {return storeService.getStores();}
+
     @GetMapping("/{storeOwnerID}")
     public Store getStoreByStoreOwnerId(@PathVariable String storeOwnerID) {return storeService.getStoreByStoreOwnerId(Integer.parseInt(storeOwnerID));}
 

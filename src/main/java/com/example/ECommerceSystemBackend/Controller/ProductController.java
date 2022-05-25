@@ -5,6 +5,7 @@ import java.util.List;
 import com.example.ECommerceSystemBackend.Model.Product;
 import com.example.ECommerceSystemBackend.Model.DTO.ProductStockDTO;
 import com.example.ECommerceSystemBackend.Model.enums.ProductType;
+import com.example.ECommerceSystemBackend.Model.enums.ConfirmationType;
 import com.example.ECommerceSystemBackend.Service.ProductService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,9 @@ public class ProductController {
     @GetMapping("/searchName/{name}")
     public List<Product> getProductWithName(@PathVariable String name) {return productService.getProductWithName(name);}
 
+    @GetMapping("/new")
+    public List<Product> getNewAddedProducts() {return productService.getProductBySuspended(ConfirmationType.WAITING);}
+
     @PutMapping("/stock")
     public void updateProductQuantity(@RequestBody ProductStockDTO productStockDTO) {productService.updateProductQuantity(productStockDTO.getId(), productStockDTO.getQuantity());}
 
@@ -72,15 +76,14 @@ public class ProductController {
     @PutMapping()
     public void updateProduct(@RequestBody Product product) {productService.updateProduct(product);}
 
-
-    @PutMapping(path = "/{id}/suspend")
-    public void suspendProduct(@PathVariable Integer id) {
-        productService.suspendProduct(id);
+    @PutMapping(path = "/{id}/accept")
+    public void acceptProduct(@PathVariable Integer id) {
+        productService.suspendProduct(id, ConfirmationType.ACCEPTED);
     }
 
-    @PutMapping(path = "/{id}/unsuspend")
-    public void unsuspendProduct(@PathVariable Integer id) {
-        productService.unsuspendProduct(id);
+    @PutMapping(path = "/{id}/reject")
+    public void rejectProduct(@PathVariable Integer id) {
+        productService.suspendProduct(id, ConfirmationType.REJECTED);
     }
 
 }
