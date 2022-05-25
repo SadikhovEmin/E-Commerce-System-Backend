@@ -28,21 +28,4 @@ public class CustomerOrderController {
             )
         );
     }
-
-//    @PutMapping(path = "/{orderId}/customer/{customerId}/store/{storeId}")
-//    public CustomerOrder createOrder(
-//            @PathVariable Integer orderId,
-//            @PathVariable Integer customerId,
-//            @PathVariable Integer storeId
-//    ) {
-//        return orderService.createOrder(orderId, customerId, storeId);
-//    }
-//
-//    @PutMapping(path = "/updateStatus/{orderId}/status/{status}")
-//    public void updateOrderStatus(
-//            @PathVariable String status,
-//            @PathVariable Integer orderId
-//    ) {
-//        orderService.updateOrderStatus(status , orderId);
-//    }
 }
