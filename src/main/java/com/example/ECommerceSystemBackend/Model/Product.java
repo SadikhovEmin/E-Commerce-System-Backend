@@ -27,7 +27,7 @@ public class Product {
     private Double review;
 
     @Column(name = "SUSPENDED")
-    private ConfirmationType suspended;
+    private Boolean suspended;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "Shop_ID", referencedColumnName = "id")
@@ -35,6 +35,9 @@ public class Product {
 
     @OneToMany(mappedBy = "product")
     public List<Comment> commentList;
+
+    @ManyToMany(mappedBy = "products")
+    public List<CustomerOrder> orders;
 
     public Product() {
     }
@@ -114,6 +117,14 @@ public class Product {
         this.store = store;
     }
 
+
+    public Boolean getSuspended() {
+        return suspended;
+    }
+
+    public void setSuspended(Boolean suspended) {
+        this.suspended = suspended;
+
     public Double getReview() {
         return review;
     }
@@ -129,6 +140,13 @@ public class Product {
 
     public void setCommentList(List<Comment> commentList) {
         this.commentList = commentList;
+    }
 
+    public List<CustomerOrder> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<CustomerOrder> orders) {
+        this.orders = orders;
     }
 }

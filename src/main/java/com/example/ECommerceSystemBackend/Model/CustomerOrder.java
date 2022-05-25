@@ -1,9 +1,7 @@
 package com.example.ECommerceSystemBackend.Model;
 
-import com.example.ECommerceSystemBackend.Model.enums.Status;
-
 import javax.persistence.*;
-import java.util.Date;
+import java.util.List;
 
 @Entity
 public class CustomerOrder {
@@ -21,9 +19,43 @@ public class CustomerOrder {
     @ManyToOne
     @JoinColumn(name = "Store_ID", referencedColumnName = "id")
     private Store store;        // Assigned Store -> Foreign key
+
+    @ManyToMany
+    @JoinTable(
+            name = "Order_Product",
+            joinColumns = @JoinColumn(name = "ORDER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "PRODUCT_ID")
+    )
+    private List<Product> products;
+
     private Double price;
 
     private String status;
+
+    public CustomerOrder(String date, Double price, String status, Store store, Customer customer, List<Product> products) {
+        this.date = date;
+        this.price = price;
+        this.status = status;
+        setStore(store);
+        setCustomer(customer);
+        setProducts(products);
+    }
+
+    public CustomerOrder(String date, Double price, String status, Store store) {
+        this.date = date;
+        this.price = price;
+        this.status = status;
+        this.store = store;
+        setStore(store);
+    }
+
+    public CustomerOrder() {
+
+    }
+
+    public void addProduct(Product product) {
+        this.products.add(product);
+    }
 
     public Integer getId() {
         return id;
@@ -67,5 +99,13 @@ public class CustomerOrder {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 }
