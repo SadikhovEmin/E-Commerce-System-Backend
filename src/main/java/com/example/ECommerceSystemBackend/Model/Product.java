@@ -49,14 +49,6 @@ public class Product {
         this.store = store;
     }
 
-    public ConfirmationType getSuspended() {
-        return suspended;
-    }
-
-    public void setSuspended(ConfirmationType suspended) {
-        this.suspended = suspended;
-    }
-
     public Integer getQuantity() {
         return quantity;
     }
@@ -124,7 +116,7 @@ public class Product {
 
     public void setSuspended(Boolean suspended) {
         this.suspended = suspended;
-
+    }
     public Double getReview() {
         return review;
     }
