@@ -1,6 +1,9 @@
 package com.example.ECommerceSystemBackend.Model;
 
+import com.example.ECommerceSystemBackend.Model.enums.OrderStatus;
+
 import javax.persistence.*;
+import java.sql.Date;
 import java.util.List;
 
 @Entity
@@ -10,7 +13,11 @@ public class CustomerOrder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String date;
+    private Date date;
+
+    private Double price;
+
+    private OrderStatus status;
 
     @ManyToOne
     @JoinColumn(name = "Customer_ID", referencedColumnName = "id")
@@ -28,11 +35,8 @@ public class CustomerOrder {
     )
     private List<Product> products;
 
-    private Double price;
 
-    private String status;
-
-    public CustomerOrder(String date, Double price, String status, Store store, Customer customer, List<Product> products) {
+    public CustomerOrder(Date date, Double price, OrderStatus status, Store store, Customer customer, List<Product> products) {
         this.date = date;
         this.price = price;
         this.status = status;
@@ -41,7 +45,7 @@ public class CustomerOrder {
         setProducts(products);
     }
 
-    public CustomerOrder(String date, Double price, String status, Store store) {
+    public CustomerOrder(Date date, Double price, OrderStatus status, Store store) {
         this.date = date;
         this.price = price;
         this.status = status;
@@ -53,15 +57,19 @@ public class CustomerOrder {
 
     }
 
-    public void addProduct(Product product) {
-        this.products.add(product);
-    }
-
     public Integer getId() {
         return id;
     }
 
-    public void setDate(String date) {
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -81,6 +89,14 @@ public class CustomerOrder {
         this.store = store;
     }
 
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
     public Double getPrice() {
         return price;
     }
@@ -89,23 +105,11 @@ public class CustomerOrder {
         this.price = price;
     }
 
-    public String getDate() {
-        return date;
-    }
-
-    public String getStatus() {
+    public OrderStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(OrderStatus status) {
         this.status = status;
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
     }
 }

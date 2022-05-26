@@ -46,4 +46,5 @@ public interface StoreRepository extends JpaRepository<Store, Integer> {
     @Query("select s from Store s")
     List<Store> getStores();
 
+
 }

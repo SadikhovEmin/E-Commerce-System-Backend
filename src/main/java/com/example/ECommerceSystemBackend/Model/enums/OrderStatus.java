@@ -1,6 +1,6 @@
 package com.example.ECommerceSystemBackend.Model.enums;
 
-public enum Status {
+public enum OrderStatus {
     SHIPPED,
     DELIVERED,
     IN_PROCESS
