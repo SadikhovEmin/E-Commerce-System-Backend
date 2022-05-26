@@ -1,8 +1,19 @@
 package com.example.ECommerceSystemBackend.Model.DTO;
 
+import com.example.ECommerceSystemBackend.Model.Store;
+
 public class StoreOwnerInfoDTO {
     public Integer id;
     public String email;
+    public String storeName;
+
+    public String getStoreName() {
+        return storeName;
+    }
+
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
+    }
 
     public Integer getId() {
         return id;

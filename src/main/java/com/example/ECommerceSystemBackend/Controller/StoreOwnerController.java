@@ -1,16 +1,17 @@
 package com.example.ECommerceSystemBackend.Controller;
 
-import java.util.HashMap;
-import java.util.Map;
 
-import com.example.ECommerceSystemBackend.Model.Email;
-import com.example.ECommerceSystemBackend.Model.StoreOwner;
+import com.example.ECommerceSystemBackend.Model.*;
 import com.example.ECommerceSystemBackend.Model.DTO.PasswordDTO;
 import com.example.ECommerceSystemBackend.Model.DTO.StoreOwnerInfoDTO;
+import com.example.ECommerceSystemBackend.Model.DTO.StoreOwnerStoreDTO;
+import com.example.ECommerceSystemBackend.Service.StoreOwnerService;
+import java.util.HashMap;
+import java.util.Map;
+import com.example.ECommerceSystemBackend.Model.StoreOwner;
 import com.example.ECommerceSystemBackend.Model.enums.Hosts;
 import com.example.ECommerceSystemBackend.Model.enums.Ports;
 import com.example.ECommerceSystemBackend.Service.AuthenticationService;
-import com.example.ECommerceSystemBackend.Service.StoreOwnerService;
 import com.example.ECommerceSystemBackend.Service.SystemEmailAccountService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,6 @@ public class StoreOwnerController {
 
     @GetMapping("/{email}")
     public StoreOwner getStoreOwner(@PathVariable String email) {
-        System.out.println("Hi");
         StoreOwner c = storeOwnerService.getStoreOwnerByEmail(email);
         Integer canLogin = mfa_codes.get(c.getEmail());
         mfa_codes.remove(c.getEmail());
@@ -67,6 +67,11 @@ public class StoreOwnerController {
         storeOwnerService.updateStoreOwnerInfo(storeOwner);
     }
 
+    @PostMapping("/store")
+    public void createNewStore(@RequestBody StoreOwnerStoreDTO storeOwnerStoreDTO){
+        storeOwnerService.createNewStore(storeOwnerStoreDTO);
+    }
+   
     @PostMapping
     public StoreOwner addStoreOwner(@RequestBody StoreOwner storeOwner) {
         return storeOwnerService.addStoreOwner(storeOwner);
@@ -85,7 +90,7 @@ public class StoreOwnerController {
     @PostMapping("/login")
     public String login(@RequestBody Map<String, String> storeOwnerMap) {
         String storeOwnerEmail = storeOwnerMap.get("email");
-        StoreOwner c = storeOwnerService.getStoreOwner(storeOwnerEmail);
+        StoreOwner c = storeOwnerService.getStoreOwnerByEmail(storeOwnerEmail);
         if (c.getPassword().equals(storeOwnerMap.get("password"))) {
             if (c.isMfa()) {
                 if (authenticationService.verifyCode(storeOwnerMap.get("code"), c.getSecret())) {
@@ -100,7 +105,6 @@ public class StoreOwnerController {
 
     @PostMapping("/mfa")
     public void mfa(@RequestBody Map<String, String> customerMap) {
-        System.out.println("Hello" + customerMap.get("email") + customerMap.get("mfaCode"));
         String customerEmail = customerMap.get("email");
         StoreOwner c = storeOwnerService.getStoreOwnerByEmail(customerEmail);
         if (c.isMfa()) {
@@ -112,7 +116,6 @@ public class StoreOwnerController {
         } else {
             mfa_codes.put(customerEmail, 1);
         }
-        System.out.println(mfa_codes.get(customerEmail));
     }
 
 }

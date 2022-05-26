@@ -1,6 +1,9 @@
 package com.example.ECommerceSystemBackend.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -25,18 +28,43 @@ public class Customer {
     @Transient
     private Integer canLogin;
 
-    public Customer() {
-    }
+    @OneToMany(mappedBy = "customer")
+    @JsonIgnore
+    private List<CustomerOrder> orders;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Comment> comments;
+
+    public Customer() {}
 
     public Customer(String name, String surname, String email, String password) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
+        this.orders = new ArrayList<>();
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void addOrder(CustomerOrder customerOrder) { this.orders.add(customerOrder); }
+
+    public Integer getCanLogin() {
+        return canLogin;
+    }
+
+    public void setCanLogin(Integer canLogin) {
+        this.canLogin = canLogin;
     }
 
     public Integer getId() {
         return id;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 
     public void setId(Integer id) {
@@ -87,10 +115,18 @@ public class Customer {
         return secret;
     }
 
+    public List<CustomerOrder> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<CustomerOrder> orders) {
+        this.orders = orders;
+    }
+
     public void setSecret(String secret) {
         this.secret = secret;
     }
-
+    
     public boolean isMfa() {
         return mfa;
     }
@@ -99,13 +135,10 @@ public class Customer {
         this.mfa = mfa;
     }
 
-    public Integer getCanLogin() {
-        return canLogin;
-    }
-
-    public void setCanLogin(Integer canLogin) {
-        this.canLogin = canLogin;
-    }
+    public void addProduct(Product product) {}
+    public void removeProduct(Product product) {}
+    public void checkout() {}
+    public void addFunds() {}
 
     @Override
     public String toString() {
