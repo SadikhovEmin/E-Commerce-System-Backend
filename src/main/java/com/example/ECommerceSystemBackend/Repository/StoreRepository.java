@@ -47,6 +47,9 @@ public interface StoreRepository extends JpaRepository<Store, Integer> {
     @Query("select s from Store s")
     List<Store> getStores();
 
+    @Query("select s from Store s where s.id = ?1")
+    Store getStoreById(Integer id);
+    
     @Query("select new com.example.ECommerceSystemBackend.Model.DTO.CustomerOrderStoreProductSizeDTO(s.name,s.customerOrders.size) from Store s")
     List<CustomerOrderStoreProductSizeDTO> getOrdersWithStore();
 

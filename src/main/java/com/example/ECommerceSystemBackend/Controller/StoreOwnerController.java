@@ -57,6 +57,11 @@ public class StoreOwnerController {
         return storeOwnerService.getStoreOwnerOldPassword(Integer.parseInt(id));
     }
 
+    @GetMapping("/walletAddress/{storeOwnerId}")
+    public String getWalletAddressOfStoreOwner(@PathVariable String storeOwnerId) {
+        return storeOwnerService.getWalletAddressOfStoreOwner(Integer.parseInt(storeOwnerId));
+    }
+
     @PutMapping(path = "/password")
     public void updateStoreOwnerPassword(@RequestBody PasswordDTO passwordDTO) {
         storeOwnerService.updateStoreOwnerPassword(passwordDTO);
