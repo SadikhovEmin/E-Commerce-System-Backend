@@ -23,6 +23,4 @@ public interface CustomerOrderRepository extends JpaRepository<CustomerOrder, In
     @Query("select new com.example.ECommerceSystemBackend.Model.DTO.CustomerOrderDateProductSizeDTO(o.date,o.products.size) from CustomerOrder o")
     List<CustomerOrderDateProductSizeDTO> getOrdersWithDate();
 
-    @Query("select distinct new com.example.ECommerceSystemBackend.Model.DTO.CustomerOrderStoreProductSizeDTO(o.store.name,o.products.size) from CustomerOrder o")
-    List<CustomerOrderStoreProductSizeDTO> getOrdersWithStore();
 }

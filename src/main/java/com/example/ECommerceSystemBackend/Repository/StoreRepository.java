@@ -1,5 +1,6 @@
 package com.example.ECommerceSystemBackend.Repository;
 
+import com.example.ECommerceSystemBackend.Model.DTO.CustomerOrderStoreProductSizeDTO;
 import com.example.ECommerceSystemBackend.Model.Store;
 import com.example.ECommerceSystemBackend.Model.enums.ConfirmationType;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -46,5 +47,7 @@ public interface StoreRepository extends JpaRepository<Store, Integer> {
     @Query("select s from Store s")
     List<Store> getStores();
 
+    @Query("select new com.example.ECommerceSystemBackend.Model.DTO.CustomerOrderStoreProductSizeDTO(s.name,s.customerOrders.size) from Store s")
+    List<CustomerOrderStoreProductSizeDTO> getOrdersWithStore();
 
 }
