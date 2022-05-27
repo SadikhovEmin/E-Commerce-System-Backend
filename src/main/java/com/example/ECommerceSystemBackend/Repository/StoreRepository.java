@@ -46,4 +46,7 @@ public interface StoreRepository extends JpaRepository<Store, Integer> {
     @Query("select s from Store s")
     List<Store> getStores();
 
+    @Query("select s from Store s where s.id = ?1")
+    Store getStoreById(Integer id);
+
 }

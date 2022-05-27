@@ -41,6 +41,10 @@ public class StoreOwnerService {
         return storeOwnerRepository.getStoreOwnerByEmail(email);
     }
 
+    public StoreOwner getStoreOwnerById(Integer id) {
+        return storeOwnerRepository.getStoreOwnerById(id);
+    }
+
     public String getStoreOwnerOldPassword(int id) {
         return storeOwnerRepository.getStoreOwnerOldPassword(id);
     }

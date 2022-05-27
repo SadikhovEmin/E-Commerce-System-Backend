@@ -83,7 +83,7 @@ public class StoreOwnerController {
         var systemEmailAcc = systemEmailAccountService.getSystemEmailAccount("testforhw123@gmail.com");
         var systemEmail = new Email(systemEmailAcc, Hosts.GMAIL_SMTP, Ports.GMAIL_PORT_SSL);
 
-        String code = systemEmail.SendAccountVerificationCode(storeOwnerEmail);
+        String code = systemEmail.sendAccountVerificationCode(storeOwnerEmail);
         codes.put(storeOwnerEmail, code);
     }
 
