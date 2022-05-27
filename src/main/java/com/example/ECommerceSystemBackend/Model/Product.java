@@ -19,12 +19,16 @@ public class Product {
     private Double price;
     @Column(name = "QUANTITY")
     private Integer quantity;
+
     @Column(name = "TYPE")
     private ProductType type;
     @Column(name = "DESCRIPTION")
     private String description;
     @Column(name = "REVIEW")
     private Double review;
+
+    @Column(name = "CONFIRMATION")
+    private ConfirmationType confirmationType;
 
     @Column(name = "SUSPENDED")
     private Boolean suspended;
@@ -47,6 +51,14 @@ public class Product {
         this.price = price;
         this.type = type;
         this.store = store;
+    }
+
+    public ConfirmationType getConfirmationType() {
+        return confirmationType;
+    }
+
+    public void setConfirmationType(ConfirmationType confirmationType) {
+        this.confirmationType = confirmationType;
     }
 
     public Integer getQuantity() {
@@ -140,5 +152,22 @@ public class Product {
 
     public void setOrders(List<CustomerOrder> orders) {
         this.orders = orders;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                ", type=" + type +
+                ", description='" + description + '\'' +
+                ", review=" + review +
+                ", suspended=" + suspended +
+                ", store=" + store +
+                ", commentList=" + commentList +
+                ", orders=" + orders +
+                '}';
     }
 }

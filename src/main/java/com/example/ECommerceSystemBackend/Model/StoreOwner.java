@@ -39,6 +39,14 @@ public class StoreOwner {
         this.password = password;
     }
 
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
     public Integer getCanLogin() {
         return canLogin;
     }

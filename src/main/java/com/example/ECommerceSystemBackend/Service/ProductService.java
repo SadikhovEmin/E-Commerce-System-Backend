@@ -40,12 +40,19 @@ public class ProductService {
     }
 
     public List<Product> getProductByStoreId(Integer id) {
-        List<Product> productList = repository.getProductByStoreId(id);
+        return repository.getProductByStoreId(id);
 
-        for (Product product : productList) {
-            product.setPriceWithDiscount();
+
+
+        /*for (Product product : productList) {
+            System.out.println(product.store.discountPercentage);
+            //product.setPriceWithDiscount();
         }
+
+
         return productList;
+
+         */
     }
 
     public List<Product> getProductInAscendingByPrice() {

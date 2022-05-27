@@ -59,7 +59,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Transactional
     void applyDiscountToPriceWithStoreId(Integer storeId, Double discount);
 
-    @Query("select p from Product p where p.suspended = ?1")
+    @Query("select p from Product p where p.confirmationType = ?1")
     List<Product> getProductsBySuspended(ConfirmationType suspended);
 
     @Modifying

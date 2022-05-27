@@ -37,7 +37,9 @@ public class ProductController {
     }
 
     @GetMapping("/store/{id}")
-    public List<Product> getProductsWithStoreID(@PathVariable String id) {return productService.getProductByStoreId(Integer.parseInt(id));}
+    public List<Product> getProductsWithStoreID(@PathVariable Integer id) {
+        return productService.getProductByStoreId(id);
+    }
 
     @GetMapping("/searchType/{type}")
     public List<Integer> getProductWithTypes(@PathVariable ProductType type) {return productService.getProductWithType(type);}

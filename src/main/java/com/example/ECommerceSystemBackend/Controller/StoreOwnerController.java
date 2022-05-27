@@ -12,6 +12,7 @@ import com.example.ECommerceSystemBackend.Model.StoreOwner;
 import com.example.ECommerceSystemBackend.Model.enums.Hosts;
 import com.example.ECommerceSystemBackend.Model.enums.Ports;
 import com.example.ECommerceSystemBackend.Service.AuthenticationService;
+import com.example.ECommerceSystemBackend.Service.StoreService;
 import com.example.ECommerceSystemBackend.Service.SystemEmailAccountService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,10 @@ public class StoreOwnerController {
 
     @Autowired
     StoreOwnerService storeOwnerService;
+
+    @Autowired
+    StoreService storeService;
+
     @Autowired
     AuthenticationService authenticationService;
     @Autowired
