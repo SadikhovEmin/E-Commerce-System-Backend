@@ -44,7 +44,6 @@ public class CustomerController {
 
     @GetMapping("/{email}")
     public Customer getCustomer(@PathVariable String email) {
-        System.out.println("Hi");
         Customer c = customerService.getCustomerByEmail(email);
         Integer canLogin = mfa_codes.get(c.getEmail());
         mfa_codes.remove(c.getEmail());
@@ -89,9 +88,9 @@ public class CustomerController {
                         "E-Commerce");
                 systemEmail.SendAuthenticationCode(customer.getEmail(), qrCode);
             }
-            return "loginPage.html";
+            return "../LoginPage/Login.html";
         }
-        return "signUp.html";
+        return "";
     }
 
     @PostMapping("/verification")

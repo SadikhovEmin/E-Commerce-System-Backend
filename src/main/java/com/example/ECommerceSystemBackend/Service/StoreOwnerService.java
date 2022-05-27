@@ -30,10 +30,19 @@ public class StoreOwnerService {
 
     public void updateStoreOwnerMfa(StoreOwner storeOwner, boolean mfa) {storeOwnerRepository.updateStoreOwnerMfaById(storeOwner.getId(), mfa);}
 
+
+    public String getWalletAddressOfStoreOwner(Integer id) {
+        return storeOwnerRepository.getWalletAddressOfStoreOwner(id);
+    }
+
     public void updateStoreOwnerMfa(String email, boolean mfa) {storeOwnerRepository.updateStoreOwnerMfaByEmail(email, mfa);}
 
     public StoreOwner getStoreOwnerByEmail(String email) {
         return storeOwnerRepository.getStoreOwnerByEmail(email);
+    }
+
+    public StoreOwner getStoreOwnerById(Integer id) {
+        return storeOwnerRepository.getStoreOwnerById(id);
     }
 
     public String getStoreOwnerOldPassword(int id) {

@@ -56,4 +56,8 @@ public class StoreService {
     public List<Store> getStores() {
         return storeRepository.getStores();
     }
+
+    public Store getStoreById(Integer id) {
+        return storeRepository.getStoreById(id);
+    }
 }
