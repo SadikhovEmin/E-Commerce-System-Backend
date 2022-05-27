@@ -2,12 +2,15 @@ package com.example.ECommerceSystemBackend.Service;
 
 import com.example.ECommerceSystemBackend.Model.Customer;
 import com.example.ECommerceSystemBackend.Model.CustomerOrder;
+import com.example.ECommerceSystemBackend.Model.DTO.CustomerOrderDateProductSizeDTO;
+import com.example.ECommerceSystemBackend.Model.DTO.CustomerOrderStoreProductSizeDTO;
 import com.example.ECommerceSystemBackend.Model.Store;
-import com.example.ECommerceSystemBackend.Model.enums.Status;
 import com.example.ECommerceSystemBackend.Repository.CustomerOrderRepository;
 import com.example.ECommerceSystemBackend.Repository.CustomerRepository;
 import com.example.ECommerceSystemBackend.Repository.StoreRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CustomerOrderService {
@@ -26,6 +29,11 @@ public class CustomerOrderService {
         this.customerRepository = customerRepository;
         this.storeRepository = storeRepository;
     }
+
+    public List<CustomerOrderDateProductSizeDTO> getOrdersWithDate(){
+        return orderRepository.getOrdersWithDate();
+    }
+
 
     public CustomerOrder createOrder(Integer customerOrderID, Integer customerID, Integer storeID) {
         CustomerOrder customerOrder = orderRepository.findById(customerOrderID).get();

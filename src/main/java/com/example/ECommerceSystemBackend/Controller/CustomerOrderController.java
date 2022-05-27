@@ -1,8 +1,12 @@
 package com.example.ECommerceSystemBackend.Controller;
 
 import com.example.ECommerceSystemBackend.Model.CustomerOrder;
+import com.example.ECommerceSystemBackend.Model.DTO.CustomerOrderDateProductSizeDTO;
+import com.example.ECommerceSystemBackend.Model.DTO.CustomerOrderStoreProductSizeDTO;
 import com.example.ECommerceSystemBackend.Service.CustomerOrderService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "/customerOrder")
@@ -13,6 +17,11 @@ public class CustomerOrderController {
 
     public CustomerOrderController(CustomerOrderService orderService) {
         this.orderService = orderService;
+    }
+
+    @GetMapping("/date")
+    public List<CustomerOrderDateProductSizeDTO> getOrdersWithDate(){
+        return orderService.getOrdersWithDate();
     }
 
     @PostMapping

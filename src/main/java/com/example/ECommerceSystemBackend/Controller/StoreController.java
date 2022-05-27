@@ -1,5 +1,6 @@
 package com.example.ECommerceSystemBackend.Controller;
 
+import com.example.ECommerceSystemBackend.Model.DTO.CustomerOrderStoreProductSizeDTO;
 import com.example.ECommerceSystemBackend.Model.DTO.StoreConfirmDTO;
 import com.example.ECommerceSystemBackend.Model.DTO.StoreDiscountDTO;
 import com.example.ECommerceSystemBackend.Model.enums.Hosts;
@@ -34,6 +35,11 @@ public class StoreController {
 
     @GetMapping()
     public List<Store> getStores() {return storeService.getStores();}
+
+    @GetMapping("/customerOrders")
+    public List<CustomerOrderStoreProductSizeDTO> getOrdersWithStore(){
+        return storeService.getOrdersWithStore();
+    }
 
     @GetMapping("/{storeOwnerID}")
     public Store getStoreByStoreOwnerId(@PathVariable String storeOwnerID) {return storeService.getStoreByStoreOwnerId(Integer.parseInt(storeOwnerID));}

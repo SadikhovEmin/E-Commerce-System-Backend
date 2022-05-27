@@ -1,5 +1,6 @@
 package com.example.ECommerceSystemBackend.Service;
 
+import com.example.ECommerceSystemBackend.Model.DTO.CustomerOrderStoreProductSizeDTO;
 import com.example.ECommerceSystemBackend.Model.DTO.StoreConfirmDTO;
 import com.example.ECommerceSystemBackend.Model.DTO.StoreDiscountDTO;
 import com.example.ECommerceSystemBackend.Model.Store;
@@ -24,6 +25,9 @@ public class StoreService {
         return storeRepository.getStoreByStoreOwnerId(id);
     }
 
+    public List<CustomerOrderStoreProductSizeDTO> getOrdersWithStore() {
+        return storeRepository.getOrdersWithStore();
+    }
     public void createNewStore(Store store){
       storeRepository.save(store);
     }
