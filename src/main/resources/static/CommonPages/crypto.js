@@ -77,7 +77,7 @@ async function sendEther(storeOwnerAddress, totalEther) {
         {
           from: sessionStorage.getItem("wallet"),
           to: storeOwnerAddress,
-          value: wei.toString(16)
+          value: wei.toString(16),
         },
       ],
     })

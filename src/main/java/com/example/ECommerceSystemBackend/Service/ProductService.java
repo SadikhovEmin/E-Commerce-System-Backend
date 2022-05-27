@@ -26,16 +26,16 @@ public class ProductService {
 
     public Product getProductById(Integer id) {
         Product product = repository.getProductById(id);
-        product.setPriceWithDiscount();
+        //product.setPriceWithDiscount();
         return product;
     }
 
     public List<Product> getProducts() {
         List<Product> productList = repository.findAll();
 
-        for (Product product : productList) {
+        /* for (Product product : productList) {
             product.setPriceWithDiscount();
-        }
+        } */
         return productList;
     }
 

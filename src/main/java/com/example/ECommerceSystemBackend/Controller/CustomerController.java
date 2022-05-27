@@ -86,7 +86,7 @@ public class CustomerController {
             if (customer.isMfa()) {
                 var qrCode = authenticationService.getUriForImage(customer.getSecret(), customer.getEmail(),
                         "E-Commerce");
-                systemEmail.sendAuthenticationCode(customer.getEmail(), qrCode);
+                systemEmail.SendAuthenticationCode(customer.getEmail(), qrCode);
             }
             return "../LoginPage/Login.html";
         }
@@ -98,7 +98,7 @@ public class CustomerController {
         String customerEmail = mailMap.get("email");
         var systemEmailAcc = systemEmailAccountService.getSystemEmailAccount("testforhw123@gmail.com");
         var systemEmail = new Email(systemEmailAcc, Hosts.GMAIL_SMTP, Ports.GMAIL_PORT_SSL);
-        String code = systemEmail.sendAccountVerificationCode(customerEmail);
+        String code = systemEmail.SendAccountVerificationCode(customerEmail);
 
         codes.put(customerEmail, code);
     }

@@ -40,7 +40,7 @@ public class Email {
         properties.put("mail.smtp.ssl.protocols", "TLSv1.2");
     }
 
-    public String sendAccountVerificationCode(String email) {
+    public String SendAccountVerificationCode(String email) {
         session = Session.getInstance(properties, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(sender.getEmailAddress(), sender.getEmailPassword());
@@ -64,7 +64,7 @@ public class Email {
         return null;
     }
 
-    public String sendAuthenticationCode(String email, String authenticationQRCodeBase64) {
+    public String SendAuthenticationCode(String email, String authenticationQRCodeBase64) {
         session = Session.getInstance(properties, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(sender.getEmailAddress(), sender.getEmailPassword());
@@ -92,7 +92,7 @@ public class Email {
         return null;
     }
     
-    public void sendStatusOfStoreToOwner(Store store, StoreOwner owner) {
+    public void SendStatusOfStoreToOwner(Store store, StoreOwner owner) {
         session = Session.getInstance(properties, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(sender.getEmailAddress(), sender.getEmailPassword());
@@ -113,7 +113,7 @@ public class Email {
         }
     }
     
-    public void sendCheckoutMessageToCustomer(StoreOwner owner, Customer customer) {
+    public void SendCheckoutMessageToCustomer(StoreOwner owner, Customer customer) {
         session = Session.getInstance(properties, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(sender.getEmailAddress(), sender.getEmailPassword());
@@ -125,7 +125,7 @@ public class Email {
             message.setFrom(new InternetAddress(sender.getEmailAddress()));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(customer.getEmail()));
             message.setSubject("Checkout is successfull");
-            String txt = "Hello" + customer.getName() + ",\nYour checkout is successfull and payment made to "+ owner.getWalletAddress();
+            String txt = "Hello " + customer.getName() + ",\nYour checkout is successfull and payment made to "+ owner.getWalletAddress();
             message.setText(txt);
             Transport.send(message);
         } catch (MessagingException mex) {
@@ -133,7 +133,7 @@ public class Email {
         }
     }
 
-    public void sendStatusOfOrderToCustomer(CustomerOrder order) {
+    public void SendStatusOfOrderToCustomer(CustomerOrder order) {
         session = Session.getInstance(properties, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(sender.getEmailAddress(), sender.getEmailPassword());
@@ -147,7 +147,7 @@ public class Email {
             message.setFrom(new InternetAddress(sender.getEmailAddress()));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(customer.getEmail()));
             message.setSubject("Checkout is successfull");
-            String txt = "Hello" + customer.getName() + ",\nStatus of your order from"+store.getName()+"with Id: "+order.getId()+"is " + order.getStatus();
+            String txt = "Hello " + customer.getName() + ",\nStatus of your order from"+store.getName()+"with Id: "+order.getId()+"is " + order.getStatus();
             message.setText(txt);
             Transport.send(message);
         } catch (MessagingException mex) {
@@ -155,7 +155,7 @@ public class Email {
         }
     }
 
-    public void sendCampaignMessageToCustomers(Store store, Integer discountPercentage, List<Customer> customers) {
+    public void SendCampaignMessageToCustomers(Store store, Integer discountPercentage, List<Customer> customers) {
         session = Session.getInstance(properties, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(sender.getEmailAddress(), sender.getEmailPassword());
@@ -168,7 +168,7 @@ public class Email {
                 message.setFrom(new InternetAddress(sender.getEmailAddress()));
                 message.addRecipient(Message.RecipientType.TO, new InternetAddress(customer.getEmail()));
                 message.setSubject("New Campaign!");
-                String txt = "Hello" + customer.getName() + ",\n" + store.name + " started a campaign and discounts %" + discountPercentage + " for all of its products!" ;
+                String txt = "Hello " + customer.getName() + ",\n" + store.name + " started a campaign and discounts %" + discountPercentage + " for all of its products!" ;
                 message.setText(txt);
                 Transport.send(message);
             } catch (MessagingException mex) {

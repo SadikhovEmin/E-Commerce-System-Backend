@@ -56,6 +56,6 @@ public class InvoiceController {
         StoreOwner owner = storeOwnerService.getStoreOwnerById(invoice.getStoreOwnerId());
         var systemEmailAcc = systemEmailAccountService.getSystemEmailAccount("testforhw123@gmail.com");
         var systemEmail = new Email(systemEmailAcc, Hosts.GMAIL_SMTP, Ports.GMAIL_PORT_SSL);
-        systemEmail.sendCheckoutMessageToCustomer(owner, customer);
+        systemEmail.SendCheckoutMessageToCustomer(owner, customer);
     }
 }

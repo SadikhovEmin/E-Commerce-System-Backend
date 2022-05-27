@@ -57,7 +57,7 @@ public class StoreController {
         List<Customer> customers = customerService.getAllCustomers();
         SystemEmailAccount systemEmailAccount = systemEmailAccountService.getSystemEmailAccount("testforhw123@gmail.com");
         Email email = new Email(systemEmailAccount, Hosts.GMAIL_SMTP, Ports.GMAIL_PORT_SSL);
-        email.sendCampaignMessageToCustomers(store, storeDiscountDTO.discountPercentage, customers);
+        email.SendCampaignMessageToCustomers(store, storeDiscountDTO.discountPercentage, customers);
     }
 
     @PutMapping(path = "/{id}/suspend")
@@ -66,7 +66,7 @@ public class StoreController {
         Store store = storeService.getStoreById(id);
         SystemEmailAccount systemEmailAccount = systemEmailAccountService.getSystemEmailAccount("testforhw123@gmail.com");
         Email email = new Email(systemEmailAccount, Hosts.GMAIL_SMTP, Ports.GMAIL_PORT_SSL);
-        email.sendStatusOfStoreToOwner(store, store.storeOwner);
+        email.SendStatusOfStoreToOwner(store, store.storeOwner);
     }
 
     @PutMapping(path = "/{id}/unsuspend")
@@ -75,7 +75,7 @@ public class StoreController {
         Store store = storeService.getStoreById(id);
         SystemEmailAccount systemEmailAccount = systemEmailAccountService.getSystemEmailAccount("testforhw123@gmail.com");
         Email email = new Email(systemEmailAccount, Hosts.GMAIL_SMTP, Ports.GMAIL_PORT_SSL);
-        email.sendStatusOfStoreToOwner(store, store.storeOwner);
+        email.SendStatusOfStoreToOwner(store, store.storeOwner);
     }
 
     @PutMapping("/confirmation")
