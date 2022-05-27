@@ -2,6 +2,7 @@ package com.example.ECommerceSystemBackend.Model;
 
 import com.example.ECommerceSystemBackend.Model.enums.ProductType;
 import com.example.ECommerceSystemBackend.Model.enums.ConfirmationType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
@@ -37,6 +38,7 @@ public class Product {
     public List<Comment> commentList;
 
     @ManyToMany(mappedBy = "products")
+    @JsonIgnore
     public List<CustomerOrder> orders;
 
     public Product() {
