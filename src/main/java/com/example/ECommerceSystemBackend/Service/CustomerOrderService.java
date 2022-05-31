@@ -4,7 +4,10 @@ import com.example.ECommerceSystemBackend.Model.Customer;
 import com.example.ECommerceSystemBackend.Model.CustomerOrder;
 import com.example.ECommerceSystemBackend.Model.DTO.CustomerOrderDateProductSizeDTO;
 import com.example.ECommerceSystemBackend.Model.DTO.CustomerOrderStoreProductSizeDTO;
+import com.example.ECommerceSystemBackend.Model.DTO.OrderActivityDTO;
+import com.example.ECommerceSystemBackend.Model.Product;
 import com.example.ECommerceSystemBackend.Model.Store;
+import com.example.ECommerceSystemBackend.Model.enums.OrderStatus;
 import com.example.ECommerceSystemBackend.Repository.CustomerOrderRepository;
 import com.example.ECommerceSystemBackend.Repository.CustomerRepository;
 import com.example.ECommerceSystemBackend.Repository.StoreRepository;
@@ -46,7 +49,7 @@ public class CustomerOrderService {
         return orderRepository.save(customerOrder);
     }
 
-    public void updateOrderStatus(String status, Integer orderID) {
+    public void updateOrderStatus(OrderStatus status, Integer orderID) {
         orderRepository.updateOrderStatus(status, orderID);
     }
 
@@ -56,4 +59,20 @@ public class CustomerOrderService {
 
     public void cancelCustomerOrder(Integer orderId){orderRepository.deleteById(orderId);}
 
+
+    public List<OrderActivityDTO> getOrdersByCustomerID(Integer id) {
+        return orderRepository.getOrdersByCustomerID(id);
+    }
+
+    public List<Product> getProductsUsedInOrder(Integer id) {
+        return orderRepository.getProductsUsedInOrder(id);
+    }
+
+    public List<OrderActivityDTO> getAllOrders() {
+        return orderRepository.getAllOrders();
+    }
+
+    public CustomerOrder getOrderByID(Integer id) {
+        return orderRepository.getOrderByID(id);
+    }
 }
