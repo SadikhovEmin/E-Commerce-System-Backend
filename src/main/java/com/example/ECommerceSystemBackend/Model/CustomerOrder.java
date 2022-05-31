@@ -27,7 +27,7 @@ public class CustomerOrder {
     @JoinColumn(name = "Store_ID", referencedColumnName = "id")
     private Store store;        // Assigned Store -> Foreign key
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "Order_Product",
             joinColumns = @JoinColumn(name = "ORDER_ID"),
@@ -45,12 +45,30 @@ public class CustomerOrder {
         setProducts(products);
     }
 
+    public CustomerOrder(Integer id, Date date, Double price, List<Product> products) {
+        this.id = id;
+        this.date = date;
+        this.price = price;
+        this.products = products;
+    }
+
     public CustomerOrder(Date date, Double price, OrderStatus status, Store store) {
         this.date = date;
         this.price = price;
         this.status = status;
         this.store = store;
         setStore(store);
+    }
+
+    public CustomerOrder(Integer id, Date date, Double price) {
+        this.id = id;
+        this.date = date;
+        this.price = price;
+    }
+
+    public CustomerOrder(Integer id, Double price) {
+        this.id = id;
+        this.price = price;
     }
 
     public CustomerOrder() {
