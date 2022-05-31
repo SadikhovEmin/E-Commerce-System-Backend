@@ -1,5 +1,6 @@
 package com.example.ECommerceSystemBackend.Model;
 
+import java.util.List;
 import java.util.Properties;
 import java.util.Random;
 
@@ -89,6 +90,91 @@ public class Email {
             mex.printStackTrace();
         }
         return null;
+    }
+    
+    public void SendStatusOfStoreToOwner(Store store, StoreOwner owner) {
+        session = Session.getInstance(properties, new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(sender.getEmailAddress(), sender.getEmailPassword());
+            }
+        });
+        session.setDebug(true);
+        try {
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(sender.getEmailAddress()));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(owner.getEmail()));
+            message.setSubject("Status of Your Store");
+            String status = store.getSuspended() ? "suspended" : "not suspended";
+            String txt = "Hello" + owner.getName() + ",\nYour store is " + status;
+            message.setText(txt);
+            Transport.send(message);
+        } catch (MessagingException mex) {
+            mex.printStackTrace();
+        }
+    }
+    
+    public void SendCheckoutMessageToCustomer(StoreOwner owner, Customer customer) {
+        session = Session.getInstance(properties, new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(sender.getEmailAddress(), sender.getEmailPassword());
+            }
+        });
+        session.setDebug(true);
+        try {
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(sender.getEmailAddress()));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(customer.getEmail()));
+            message.setSubject("Checkout is successfull");
+            String txt = "Hello " + customer.getName() + ",\nYour checkout is successfull and payment made to "+ owner.getWalletAddress();
+            message.setText(txt);
+            Transport.send(message);
+        } catch (MessagingException mex) {
+            mex.printStackTrace();
+        }
+    }
+
+    public void SendStatusOfOrderToCustomer(CustomerOrder order) {
+        session = Session.getInstance(properties, new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(sender.getEmailAddress(), sender.getEmailPassword());
+            }
+        });
+        session.setDebug(true);
+        try {
+            Customer customer = order.getCustomer();
+            Store store = order.getStore();
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(sender.getEmailAddress()));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(customer.getEmail()));
+            message.setSubject("Checkout is successfull");
+            String txt = "Hello " + customer.getName() + ",\nStatus of your order from"+store.getName()+"with Id: "+order.getId()+"is " + order.getStatus();
+            message.setText(txt);
+            Transport.send(message);
+        } catch (MessagingException mex) {
+            mex.printStackTrace();
+        }
+    }
+
+    public void SendCampaignMessageToCustomers(Store store, Integer discountPercentage, List<Customer> customers) {
+        session = Session.getInstance(properties, new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(sender.getEmailAddress(), sender.getEmailPassword());
+            }
+        });
+        session.setDebug(true);
+        for(Customer customer : customers) {
+            try {
+                MimeMessage message = new MimeMessage(session);
+                message.setFrom(new InternetAddress(sender.getEmailAddress()));
+                message.addRecipient(Message.RecipientType.TO, new InternetAddress(customer.getEmail()));
+                message.setSubject("New Campaign!");
+                String txt = "Hello " + customer.getName() + ",\n" + store.name + " started a campaign and discounts %" + discountPercentage + " for all of its products!" ;
+                message.setText(txt);
+                Transport.send(message);
+            } catch (MessagingException mex) {
+                mex.printStackTrace();
+            }
+        }
     }
 
     public void SendStatusOfOrderToCustomer(CustomerOrder order) {

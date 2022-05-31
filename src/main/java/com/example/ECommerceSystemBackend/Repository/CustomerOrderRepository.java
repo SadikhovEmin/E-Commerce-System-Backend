@@ -40,4 +40,5 @@ public interface CustomerOrderRepository extends JpaRepository<CustomerOrder, In
 
     @Query("select new com.example.ECommerceSystemBackend.Model.DTO.OrderActivityDTO(o.id, o.date, o.price) from CustomerOrder o where o.id = ?1")
     CustomerOrder getOrderByID(Integer id);
+
 }

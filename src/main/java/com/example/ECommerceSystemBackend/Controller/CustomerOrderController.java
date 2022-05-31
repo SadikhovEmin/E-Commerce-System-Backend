@@ -35,11 +35,6 @@ public class CustomerOrderController {
         return orderService.getOrdersWithDate();
     }
 
-    @GetMapping("/store")
-    public List<CustomerOrderStoreProductSizeDTO> getOrdersWithStore(){
-        return orderService.getOrdersWithStore();
-    }
-
     @PostMapping
     public CustomerOrder save(@RequestBody CustomerOrder order) {
         return orderService.save(

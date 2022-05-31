@@ -41,6 +41,10 @@ public class CustomerService {
         return repository.getCustomerPassword(id);
     }
 
+    public Customer getCustomerById(Integer id) {
+        return repository.getCustomerById(id);
+    }
+
     public Integer getCustomerId(String email) {
         return repository.getCustomerId(email);
     }

@@ -1,0 +1,122 @@
+#menu-row {
+    margin: 9% 4% 7% 4%;
+}
+
+#productImagePart{
+    margin-top: 15%;
+}
+#productInformationPart{
+    margin-top: 15%;
+    justify-content: center;
+    display: inline-grid;
+}
+
+.container-fluid {
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.text{
+    color: #161850;
+}
+
+#menu {
+    box-shadow: 0.5px 0px 0px rgb(0 0 0 / 25%);
+}
+
+a:link {
+    text-decoration: none;
+}
+
+
+a:visited {
+    text-decoration: none;
+}
+
+
+a:hover {
+    text-decoration: none;
+}
+
+
+a:active {
+    text-decoration: none;
+}
+
+#selected-text {
+    color: #68B566;
+}
+.blueButtons {
+    border-radius: 10rem;
+    border: 3px solid #688691;
+    color: #688691;
+    font-family: 'Josefin Sans', sans-serif;
+    font-style: normal;
+    font-size: 2vh;
+    text-align: center;
+    box-sizing: unset;
+    min-width: 30px;
+    max-width: 60%;
+  }
+
+.button {
+    background: #68B566;
+    border-radius: 0%;
+    width: 212px;
+    height: 44px;
+  }
+
+  form {
+    width: 300px;
+}
+
+.value-button {
+    display: inline-block;
+    text-align: center;
+    border: 1px solid #161850;
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
+    padding: 5px 0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.value-button:hover {
+    cursor: pointer;
+}
+
+form #decrease {
+    border-right: 0px;
+    margin-right: -4px;
+    margin-top: -2px;
+}
+
+form #increase {
+    border-left: 0px;
+    margin-left: -4px;
+    margin-top: -2px;
+}
+
+input#number {
+    text-align: center;
+    border: 1px solid #161850;
+    margin: 0px;
+    width: 40px;
+    height: 40px;
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 20px;
+    color: #161850;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

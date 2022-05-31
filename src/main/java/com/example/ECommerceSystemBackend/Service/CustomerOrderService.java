@@ -37,9 +37,6 @@ public class CustomerOrderService {
         return orderRepository.getOrdersWithDate();
     }
 
-    public List<CustomerOrderStoreProductSizeDTO> getOrdersWithStore() {
-        return orderRepository.getOrdersWithStore();
-    }
 
     public CustomerOrder createOrder(Integer customerOrderID, Integer customerID, Integer storeID) {
         CustomerOrder customerOrder = orderRepository.findById(customerOrderID).get();
