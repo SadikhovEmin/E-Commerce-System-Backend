@@ -12,6 +12,10 @@ public class SystemEmailAccountService {
     @Autowired
     private SystemEmailAccountRepository systemEmailAccountRepository;
 
+    public SystemEmailAccountService(SystemEmailAccountRepository systemEmailAccountRepository) {
+        this.systemEmailAccountRepository = systemEmailAccountRepository;
+    }
+
     public SystemEmailAccount getSystemEmailAccount(String email) {return systemEmailAccountRepository.getSystemEmailAccountByEmail(email);}
     
 }

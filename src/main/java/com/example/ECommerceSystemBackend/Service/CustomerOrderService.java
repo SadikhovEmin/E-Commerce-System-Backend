@@ -74,4 +74,8 @@ public class CustomerOrderService {
     public List<OrderActivityDTO> getAllOrders() {
         return orderRepository.getAllOrders();
     }
+
+    public CustomerOrder getOrderByID(Integer id) {
+        return orderRepository.getOrderByID(id);
+    }
 }

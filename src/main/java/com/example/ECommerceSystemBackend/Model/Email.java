@@ -91,6 +91,28 @@ public class Email {
         return null;
     }
 
+    public void SendStatusOfOrderToCustomer(CustomerOrder order) {
+        session = Session.getInstance(properties, new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(sender.getEmailAddress(), sender.getEmailPassword());
+            }
+        });
+        session.setDebug(true);
+        try {
+            Customer customer = order.getCustomer();
+            Store store = order.getStore();
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(sender.getEmailAddress()));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(customer.getEmail()));
+            message.setSubject("Checkout is successfull");
+            String txt = "Hello " + customer.getName() + ",\nStatus of your order from"+store.getName()+"with Id: "+order.getId()+"is " + order.getStatus();
+            message.setText(txt);
+            Transport.send(message);
+        } catch (MessagingException mex) {
+            mex.printStackTrace();
+        }
+    }
+
     private String generateRandomCode(int digit) {
         Random rnd = new Random();
         StringBuilder sb = new StringBuilder();
