@@ -7,6 +7,7 @@ import com.example.ECommerceSystemBackend.Repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,33 +27,31 @@ public class ProductService {
 
     public Product getProductById(Integer id) {
         Product product = repository.getProductById(id);
-        //product.setPriceWithDiscount();
+        product.setPriceWithDiscount();
         return product;
     }
 
     public List<Product> getProducts() {
         List<Product> productList = repository.findAll();
 
-        /* for (Product product : productList) {
-            product.setPriceWithDiscount();
-        } */
+        for (Product product : productList) {
+            //product.setPriceWithDiscount();
+        }
         return productList;
     }
 
     public List<Product> getProductByStoreId(Integer id) {
-        return repository.getProductByStoreId(id);
+        var productList = repository.getProductByStoreId(id);
 
+        var unsuspendedProductList = new ArrayList<Product>();
 
-
-        /*for (Product product : productList) {
-            System.out.println(product.store.discountPercentage);
-            //product.setPriceWithDiscount();
+        for (Product product : productList) {
+            product.setPriceWithDiscount();
+            if(!product.getSuspended()){
+                unsuspendedProductList.add(product);
+            }
         }
-
-
-        return productList;
-
-         */
+        return unsuspendedProductList;
     }
 
     public List<Product> getProductInAscendingByPrice() {
@@ -99,8 +98,8 @@ public class ProductService {
         repository.updateProduct(product.getId(), product.getName(), product.getPrice(), product.getQuantity(), product.getType(), product.getDescription());
     }
 
-    public void suspendProduct(Integer id, ConfirmationType confirmationType) {
-        repository.suspendProduct(id, confirmationType);
+    public void suspendProduct(Integer id ,Boolean isSuspend) {
+        repository.suspendProduct(id, isSuspend);
     }
 
     public List<Product> getProductBySuspended(ConfirmationType confirmationType){

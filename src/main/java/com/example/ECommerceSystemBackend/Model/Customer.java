@@ -19,6 +19,10 @@ public class Customer {
     private String email;
     @Column(name = "PASSWORD")
     private String password;
+
+    @Column(name = "ADDRESS")
+    private String address;
+
     @Column(name = "MFA")
     private boolean mfa = false;
     @Column(name = "SECRET")
@@ -43,6 +47,14 @@ public class Customer {
         this.email = email;
         this.password = password;
         this.orders = new ArrayList<>();
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public List<Comment> getComments() {

@@ -33,7 +33,7 @@ public class CustomerService {
         return repository.save(customer);
     }
 
-    public void updateCustomerInfo(CustomerInfoDTO customer) {repository.updateCustomerInfo(customer.getId(), customer.getName(), customer.getSurname(), customer.getEmail());}
+    public void updateCustomerInfo(CustomerInfoDTO customer) {repository.updateCustomerInfo(customer.getId(), customer.getName(), customer.getSurname(), customer.getEmail(),customer.getAddress());}
 
     public void updateCustomerPassword(PasswordDTO passwordDTO) {repository.updateCustomerPassword(passwordDTO.getId(), passwordDTO.getPassword());}
 

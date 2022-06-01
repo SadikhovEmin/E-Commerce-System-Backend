@@ -37,9 +37,9 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
     void updateCustomerMfaByEmail(String email, boolean mfa);
 
     @Modifying
-    @Query("update Customer set name = ?2 , surname = ?3, email = ?4  where id = ?1 ")
+    @Query("update Customer set name = ?2 , surname = ?3, email = ?4, address = ?5 where id = ?1 ")
     @Transactional
-    void updateCustomerInfo(Integer id, String name, String surname, String email);
+    void updateCustomerInfo(Integer id, String name, String surname, String email, String address);
 
     @Modifying
     @Query("update Customer set password = ?2 where id = ?1 ")

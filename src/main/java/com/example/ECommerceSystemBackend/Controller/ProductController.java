@@ -80,12 +80,12 @@ public class ProductController {
 
     @PutMapping(path = "/{id}/accept")
     public void acceptProduct(@PathVariable Integer id) {
-        productService.suspendProduct(id, ConfirmationType.ACCEPTED);
+        productService.suspendProduct(id, true);
     }
 
     @PutMapping(path = "/{id}/reject")
     public void rejectProduct(@PathVariable Integer id) {
-        productService.suspendProduct(id, ConfirmationType.REJECTED);
+        productService.suspendProduct(id, false);
     }
 
 }

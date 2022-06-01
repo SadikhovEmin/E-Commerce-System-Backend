@@ -1,6 +1,7 @@
 package com.example.ECommerceSystemBackend.Model.DTO;
 
 import com.example.ECommerceSystemBackend.Model.Product;
+import com.example.ECommerceSystemBackend.Model.enums.OrderStatus;
 
 import java.util.Date;
 import java.util.List;
@@ -9,11 +10,21 @@ public class OrderActivityDTO {
     public Integer orderID;
     public Date date;
     public Double price;
+    public OrderStatus status;
 
-    public OrderActivityDTO(Integer orderID, Date date, Double price) {
+    public OrderActivityDTO(Integer orderID, Date date, Double price, OrderStatus status) {
         this.orderID = orderID;
         this.date = date;
         this.price = price;
+        this.status = status;
+    }
+
+    public OrderStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(OrderStatus status) {
+        this.status = status;
     }
 
     public Integer getOrderID() {

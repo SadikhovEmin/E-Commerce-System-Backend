@@ -177,7 +177,7 @@ public class Email {
         }
     }
 
-    public void SendStatusOfOrderToCustomer(CustomerOrder order) {
+    /*public void SendStatusOfOrderToCustomer(CustomerOrder order) {
         session = Session.getInstance(properties, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(sender.getEmailAddress(), sender.getEmailPassword());
@@ -198,6 +198,8 @@ public class Email {
             mex.printStackTrace();
         }
     }
+
+     */
 
     private String generateRandomCode(int digit) {
         Random rnd = new Random();

@@ -65,5 +65,5 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Modifying
     @Transactional
     @Query("update Product p set p.suspended =?2 where p.id =?1")
-    void suspendProduct(Integer id, ConfirmationType confirmationType);
+    void suspendProduct(Integer id, Boolean isSuspended);
 }
