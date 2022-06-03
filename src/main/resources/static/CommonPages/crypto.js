@@ -16,6 +16,7 @@ async function orderAll() {
     try {
       await sendEther(walletAddressOfStoreOwner, totalEtherPayment)
       await createInvoice(orders)
+      await createOrder(orders,totalEtherPayment)
     } catch (error) {
       console.log(error)
     }
@@ -77,7 +78,7 @@ async function sendEther(storeOwnerAddress, totalEther) {
         {
           from: sessionStorage.getItem("wallet"),
           to: storeOwnerAddress,
-          value: wei.toString(16),
+          value: wei.toString(16)
         },
       ],
     })
@@ -107,6 +108,30 @@ async function createInvoice(orders) {
     headers: { 'Content-Type': 'application/json' }
   }
   await axios.post('http://localhost:8080/invoice/', data, config)
+}
+
+async function createOrder(orders,price) {
+  productIds = await getProductIdsFromOrders(orders)
+  quantities = await getProductQuantitiesFromOrders(orders)
+
+  await axios.get(`http://localhost:8080/store/${orders[0].storeOwnerId}`)
+      .then(function (response) {
+
+        const data = JSON.stringify({
+          customerId: parseInt(sessionStorage.getItem("ID")),
+          storeId: response.data.id,
+          status: "IN_PROCESS",
+          date: "2022-06-01",
+          price: price
+        })
+        const config = {
+          headers: { 'Content-Type': 'application/json' }
+        }
+        await axios.post('http://localhost:8080/customerOrder', data, config)
+      })
+      .catch(function (error) {
+        console.log(error);
+      }); 
 }
 
 async function getProductIdsFromOrders(orders) {
