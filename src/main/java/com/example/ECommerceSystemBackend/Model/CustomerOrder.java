@@ -45,6 +45,14 @@ public class CustomerOrder {
         setProducts(products);
     }
 
+    public CustomerOrder(Date date, Double price, OrderStatus status, Store store, Customer customer) {
+        this.date = date;
+        this.price = price;
+        this.status = status;
+        setStore(store);
+        setCustomer(customer);
+    }
+
     public CustomerOrder(Integer id, Date date, Double price, List<Product> products) {
         this.id = id;
         this.date = date;

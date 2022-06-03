@@ -13,6 +13,7 @@ import com.example.ECommerceSystemBackend.Repository.CustomerRepository;
 import com.example.ECommerceSystemBackend.Repository.StoreRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -33,11 +34,6 @@ public class CustomerOrderService {
         this.storeRepository = storeRepository;
     }
 
-    public List<CustomerOrderDateProductSizeDTO> getOrdersWithDate(){
-        return orderRepository.getOrdersWithDate();
-    }
-
-
     public CustomerOrder createOrder(Integer customerOrderID, Integer customerID, Integer storeID) {
         CustomerOrder customerOrder = orderRepository.findById(customerOrderID).get();
         Customer customer = customerRepository.findById(customerID).get();
@@ -47,6 +43,24 @@ public class CustomerOrderService {
         customerOrder.setStore(store);
         customerOrder.setCustomer(customer);
         return orderRepository.save(customerOrder);
+    }
+
+    public List<CustomerOrderDateProductSizeDTO> getOrdersWithDate(){
+        var orders = orderRepository.getOrdersWithDate();
+        var cumulativeOrders = new ArrayList<CustomerOrderDateProductSizeDTO>();
+        for (CustomerOrderDateProductSizeDTO order : orders) {
+            boolean isAdded = true;
+            for (CustomerOrderDateProductSizeDTO cumulativeOrder : cumulativeOrders) {
+                if(order.getCustomerOrderDate().equals(cumulativeOrder.getCustomerOrderDate())){
+                    isAdded = false;
+                    cumulativeOrder.setCustomerOrderProductSize(cumulativeOrder.getCustomerOrderProductSize() + order.getCustomerOrderProductSize());
+                }
+            }
+            if(isAdded){
+                cumulativeOrders.add(order);
+            }
+        }
+        return cumulativeOrders;
     }
 
     public void updateOrderStatus(OrderStatus status, Integer orderID) {
